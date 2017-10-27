@@ -23,7 +23,7 @@ TEST_F(TestDataLoader, LoadData) {
   int n_features = 10;
   std::string url = "hdfs:///datasets/classification/a9";
   lib::Parser<lib::LabeledSample, DataStore> svmParser();
-  DataLoader.load(std::string url, n_features, svmParser, &datastore);
+  DataLoader.load(url, n_features, svmParser, &datastore);
 }
 
 }  // namespace csci5570
