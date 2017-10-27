@@ -1,3 +1,4 @@
+#include <vector>
 #include "glog/logging.h"
 #include "gtest/gtest.h"
 #include "lib/abstract_data_loader.hpp"
