@@ -21,13 +21,13 @@ TEST_F(TestDataLoader, LoadData) {
   using DataStore = std::vector<int>;
   using Sample=lib::LabeledSample<int, int>;
   using Parse=lib::Parser<Sample, DataStore>;
-  Sample svm_sample();
   DataStore data_store;
+  Sample svm_sample();
+  Parse svm_parser();
   int n_features = 10;
   std::string url = "hdfs:///datasets/classification/a9";
-  Parse svm_parser();
-  lib::DataLoader<Parse,DataStore> data_loader;
-  data_loader.load(url, n_features, svm_parser, &data_store);
+  lib::DataLoader<Sample,DataStore> data_loader;
+  data_loader.load<Parse>(url, n_features, svm_parser, &data_store);
 }
 
 }  // namespace csci5570
