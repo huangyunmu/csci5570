@@ -14,6 +14,7 @@
 
 namespace csci5570 {
 namespace lib {
+
 template <typename Sample, typename DataStore>
 class DataLoader : public AbstractDataLoader {
  public:
@@ -44,7 +45,7 @@ class DataLoader : public AbstractDataLoader {
     LOG(INFO) << "Coordinator begins serving";
 
     std::thread worker_thread([hdfs_namenode_port, hdfs_namenode, &coordinator, worker_host] {
-      std::string input = url;
+      std::string input = "hdfs:///datasets/classification/a9";
       int num_threads = 1;
       int second_id = 0;
       LineInputFormat infmt(input, num_threads, second_id, &coordinator, worker_host, hdfs_namenode,
@@ -68,10 +69,10 @@ class DataLoader : public AbstractDataLoader {
       BinStream finish_signal;
       finish_signal << worker_host << second_id;
       coordinator.notify_master(finish_signal, 300);
-
+    });
   
-}
+
   }
-};
-}
-}
+};  // Class DataLoader
+}  // namespace lib
+}  // namespace csci5570
