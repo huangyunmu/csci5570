@@ -23,11 +23,12 @@ class AbstractDataLoader {
    * @param datastore    a container for the samples / external in-memory storage abstraction
    */
   template <typename Parse>  // e.g. std::function<Sample(boost::string_ref, int)>
-  static void load(std::string url, int n_features, Parse parse, DataStore* datastore) {
-    // 1. Connect to the data source, e.g. HDFS, via the modules in io
-    // 2. Extract and parse lines
-    // 3. Put samples into datastore
-  }
+  static void load(std::string url, int n_features, Parse parse, DataStore* datastore);
+  // {
+  //   // 1. Connect to the data source, e.g. HDFS, via the modules in io
+  //   // 2. Extract and parse lines
+  //   // 3. Put samples into datastore
+  // }
 
 };  // class AbstractDataLoader
 
