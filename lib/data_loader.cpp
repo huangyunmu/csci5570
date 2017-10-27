@@ -70,8 +70,9 @@ class DataLoader : public AbstractDataLoader {
       finish_signal << worker_host << second_id;
       coordinator.notify_master(finish_signal, 300);
     });
-  
-
+    // Make sure zmq_context and coordinator live long enough
+    master_thread.join();
+    worker_thread.join();
   }
 };  // Class DataLoader
 }  // namespace lib
