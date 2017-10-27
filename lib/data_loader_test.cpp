@@ -7,8 +7,8 @@ namespace {
 
 class TestDataLoader : public testing::Test {
  public:
-  TestMapStorage() {}
-  ~TestMapStorage() {}
+  TestDataLoader() {}
+  ~TestDataLoader() {}
 
  protected:
   void SetUp() {}
