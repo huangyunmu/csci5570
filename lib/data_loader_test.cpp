@@ -1,10 +1,9 @@
 #include "glog/logging.h"
 #include "gtest/gtest.h"
-#include "lib/parser.hpp"
-#include "lib/labeled_sample.hpp"
 #include "lib/abstract_data_loader.hpp"
+#include "lib/labeled_sample.hpp"
+#include "lib/parser.hpp"
 namespace csci5570 {
-namespace {
 
 class TestDataLoader : public testing::Test {
  public:
@@ -17,14 +16,13 @@ class TestDataLoader : public testing::Test {
 };
 
 TEST_F(TestDataLoader, LoadData) {
-  using DataStore=std::vector <int,int>;
-  LabeledSample<int,int> svmSample;
+  using DataStore = std::vector<int, int>;
+  LabeledSample<int, int> svmSample;
   DataStore dataStore;
   int n_features = 10;
-  std::string url= "hdfs:///datasets/classification/a9";
-  Parser<LabeledSample,DataStore> svmParser;
+  std::string url = "hdfs:///datasets/classification/a9";
+  Parser<LabeledSample, DataStore> svmParser;
   DataLoader.load(std::string url, n_features, svmParse, &datastore);
 }
 
-}  // namespace
 }  // namespace csci5570
