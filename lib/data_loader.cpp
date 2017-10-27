@@ -15,7 +15,7 @@
 namespace csci5570 {
 namespace lib {
 template <typename Sample, typename DataStore>
-class DataLoader:public AbstractDataLoader {
+class DataLoader : public AbstractDataLoader {
  public:
   template <typename Parse>  // e.g. std::function<Sample(boost::string_ref, int)>
   static void load(std::string url, int n_features, Parse parse, DataStore* datastore) {
@@ -44,30 +44,33 @@ class DataLoader:public AbstractDataLoader {
     LOG(INFO) << "Coordinator begins serving";
 
     std::thread worker_thread([hdfs_namenode_port, hdfs_namenode, &coordinator, worker_host] {
-        std::string input = url;
-        int num_threads = 1;
-        int second_id = 0;
-        LineInputFormat infmt(input, num_threads, second_id, &coordinator, worker_host, hdfs_namenode, hdfs_namenode_port);
-        LOG(INFO) << "Line input is well prepared";
-    
-        // Line counting demo
-        // Deserialing logic in UDF/application library
-        bool success = true;
-        int count = 0;
-        boost::string_ref record;
-        while (true) {
-          success = infmt.next(record);
-          if (success == false)
-            break;
-          ++count;
-        }
-        LOG(INFO) << "The number of lines in " << input << " is " << count;
-    
-        // Remember to notify master that the worker wants to exit
-        BinStream finish_signal;
-        finish_signal << worker_host << second_id;
-        coordinator.notify_master(finish_signal, 300);
+      std::string input = url;
+      int num_threads = 1;
+      int second_id = 0;
+      LineInputFormat infmt(input, num_threads, second_id, &coordinator, worker_host, hdfs_namenode,
+                            hdfs_namenode_port);
+      LOG(INFO) << "Line input is well prepared";
 
+      // Line counting demo
+      // Deserialing logic in UDF/application library
+      bool success = true;
+      int count = 0;
+      boost::string_ref record;
+      while (true) {
+        success = infmt.next(record);
+        if (success == false)
+          break;
+        ++count;
+      }
+      LOG(INFO) << "The number of lines in " << input << " is " << count;
+
+      // Remember to notify master that the worker wants to exit
+      BinStream finish_signal;
+      finish_signal << worker_host << second_id;
+      coordinator.notify_master(finish_signal, 300);
+
+  
+}
   }
 };
 }
