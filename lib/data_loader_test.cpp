@@ -25,7 +25,7 @@ TEST_F(TestDataLoader, LoadData) {
   int n_features = 10;
   std::string url = "hdfs:///datasets/classification/a9";
   lib::Parser<Sample, DataStore> svm_parser();
-  lib::DataLoader data_loader<Sample,DataStore>;
+  lib::DataLoader<Sample,DataStore> data_loader;
   data_loader.load(url, n_features, svm_parser, &data_store);
 }
 
