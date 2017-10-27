@@ -69,6 +69,6 @@ class DataLoader:public AbstractDataLoader {
         coordinator.notify_master(finish_signal, 300);
 
   }
-}
+};
 }
 }
