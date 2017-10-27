@@ -17,7 +17,7 @@ class TestDataLoader : public testing::Test {
 };
 
 TEST_F(TestDataLoader, LoadData) {
-  using DataStore = std::vector<int, int>;
+  using DataStore = std::vector<int>;
   lib::LabeledSample<int, int> svmSample();
   DataStore dataStore;
   int n_features = 10;
