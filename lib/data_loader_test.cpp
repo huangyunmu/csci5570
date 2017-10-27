@@ -1,7 +1,8 @@
 #include "glog/logging.h"
 #include "gtest/gtest.h"
 #include "parser.hpp"
-#include "data_loader.cpp"
+#include "lib/labeled_sample.hpp"
+#include "lib/abstract_data_loader.hpp"
 namespace csci5570 {
 namespace {
 
