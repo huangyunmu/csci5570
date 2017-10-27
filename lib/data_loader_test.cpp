@@ -4,6 +4,7 @@
 #include "lib/abstract_data_loader.hpp"
 #include "lib/labeled_sample.hpp"
 #include "lib/parser.hpp"
+#include "lib/data_loader.hpp"
 namespace csci5570 {
 
 class TestDataLoader : public testing::Test {
@@ -23,7 +24,7 @@ TEST_F(TestDataLoader, LoadData) {
   int n_features = 10;
   std::string url = "hdfs:///datasets/classification/a9";
   lib::Parser<lib::LabeledSample, DataStore> svmParser();
-  DataLoader.load(url, n_features, svmParser, &dataStore);
+  lib::DataLoader.load(url, n_features, svmParser, &dataStore);
 }
 
 }  // namespace csci5570
