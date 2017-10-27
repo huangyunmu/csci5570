@@ -18,7 +18,7 @@ class TestDataLoader : public testing::Test {
 
 TEST_F(TestDataLoader, LoadData) {
   using DataStore = std::vector<int, int>;
-  LabeledSample<int, int> svmSample();
+  lib::LabeledSample<int, int> svmSample();
   DataStore dataStore;
   int n_features = 10;
   std::string url = "hdfs:///datasets/classification/a9";
