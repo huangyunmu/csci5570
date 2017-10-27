@@ -15,7 +15,7 @@ namespace csci5570 {
 void HDFS_Read() {
   std::string hdfs_namenode = "proj10";
   int hdfs_namenode_port = 9000;
-  int master_port = 19817;  // use a random port number to avoid collision with other users
+  int master_port = 32947;  // use a random port number to avoid collision with other users
   zmq::context_t zmq_context(1);
 
   // 1. Spawn the HDFS block assigner thread on the master
