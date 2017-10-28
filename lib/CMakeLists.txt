@@ -3,14 +3,6 @@ include_directories(${PROJECT_SOURCE_DIR} ${HUSKY_EXTERNAL_INCLUDE})
 file(GLOB lib-src-files
   data_loader.cpp
   )
-add_library(csci5570 STATIC 
-  $<TARGET_OBJECTS:server-objs> 
-  $<TARGET_OBJECTS:comm-objs> 
-  $<TARGET_OBJECTS:base-objs>
-  $<TARGET_OBJECTS:io-objs>
-  $<TARGET_OBJECTS:lib-objs>
-  )
-
 add_library(lib-objs OBJECT ${lib-src-files})
 set_property(TARGET lib-objs PROPERTY CXX_STANDARD 11)
 add_dependencies(lib-objs ${external_project_dependencies})
