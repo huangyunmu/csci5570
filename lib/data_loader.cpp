@@ -3,11 +3,9 @@
 namespace csci5570 {
 namespace lib {
 
-template <typename Sample, typename DataStore>
-class DataLoader : public AbstractDataLoader<Sample,DataStore> {
- public:
+
   template <typename Parse>  // e.g. std::function<Sample(boost::string_ref, int)>
-  static void load(std::string url, int n_features, Parse parse, DataStore* datastore) {
+  static void DataLoader::load(std::string url, int n_features, Parse parse, DataStore* datastore) {
     // 1. Connect to the data source, e.g. HDFS, via the modules in io
     // 2. Extract and parse lines
     // 3. Put samples into datastore
@@ -62,9 +60,9 @@ class DataLoader : public AbstractDataLoader<Sample,DataStore> {
     master_thread.join();
     worker_thread.join();
   }
-  void test(){
-    
+  void DataLoader::test(){
+
   }
-};  // Class DataLoader
+  // Class DataLoader
 }  // namespace lib
 }  // namespace csci5570
