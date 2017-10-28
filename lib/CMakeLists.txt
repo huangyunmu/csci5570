@@ -2,6 +2,7 @@ include_directories(${PROJECT_SOURCE_DIR} ${HUSKY_EXTERNAL_INCLUDE})
 
 file(GLOB base-src-files
   data_loader.cpp
+  data_loader_test.cpp
   )
 add_library(csci5570 STATIC 
   $<TARGET_OBJECTS:server-objs> 
