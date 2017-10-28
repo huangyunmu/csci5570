@@ -1,7 +1,7 @@
 #include "lib/data_loader.hpp"
 #include "glog/logging.h"
 #include "gtest/gtest.h"
-
+#include <vector>
 namespace csci5570 {
 
 class TestDataLoader : public testing::Test {
