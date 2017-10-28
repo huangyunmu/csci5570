@@ -16,7 +16,7 @@ template <typename Sample, typename DataStore>
 class DataLoader : public AbstractDataLoader<Sample, DataStore> {
  public:
   template <typename Parse>  // e.g. std::function<Sample(boost::string_ref, int)>
-  static void load(std::string url, int n_features, Parse parse, DataStore* datastore) overide;
+  static void load(std::string url, int n_features, Parse parse, DataStore* datastore);
 };  // Class DataLoader
 }  // namespace lib
 }  // namespace csci5570
