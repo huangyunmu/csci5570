@@ -1,10 +1,9 @@
 #include "lib/data_loader.hpp"
-#include <vector>
 #include "glog/logging.h"
 #include "gtest/gtest.h"
 
 namespace csci5570 {
-namespace {
+
 class TestDataLoader : public testing::Test {
  public:
   TestDataLoader() {}
@@ -30,5 +29,5 @@ TEST_F(TestDataLoader, LoadData) {
   lib::DataLoader<Sample, DataStore> data_loader;
   data_loader.load<Parse>(url, n_features, svm_parse, &data_store);
 }
-}
+
 }  // namespace csci5570
