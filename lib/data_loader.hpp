@@ -9,7 +9,6 @@
 #include "io/line_input_format.hpp"
 #include "lib/abstract_data_loader.hpp"
 #include "lib/labeled_sample.hpp"
-#include "lib/parser.hpp"
 namespace csci5570 {
 namespace lib {
 
