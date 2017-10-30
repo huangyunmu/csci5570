@@ -64,7 +64,6 @@ namespace lib {
 
   }
 
-  template class DataLoader<int>;
   // Class DataLoader
 }  // namespace lib
 }  // namespace csci5570
