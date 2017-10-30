@@ -71,7 +71,9 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
     master_thread.join();
     worker_thread.join();
   }
-  void test();
+  void test(){
+    
+  };
 };  // Class DataLoader
 }  // namespace lib
 }  // namespace csci5570
