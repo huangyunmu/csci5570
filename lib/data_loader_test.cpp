@@ -17,7 +17,7 @@ class TestDataLoader : public testing::Test {
 
 TEST_F(TestDataLoader, LoadData) {
   using DataStore = std::vector<int>;
-  using Sample = SVMSample;
+  using Sample = lib::SVMSample;
   using Parser = lib::Parser<Sample, DataStore>;
   using Parse = int;
   // using Parse=std::function<Sample(boost::string_ref, int)>;
