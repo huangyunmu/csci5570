@@ -21,7 +21,7 @@ TEST_F(TestDataLoader, LoadData) {
   using Parse = int;
   // using Parse=std::function<Sample(boost::string_ref, int)>;
   DataStore data_store;
-  lib::SVMSample svm_sample();
+  lib::SVMSample svm_sample;
   LOG(INFO)<<svm_sample.toString();
   Parser svm_parser();
   Parse svm_parse;
