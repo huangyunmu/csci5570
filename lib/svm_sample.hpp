@@ -8,7 +8,7 @@ namespace lib {
 // Consider both sparse and dense feature abstraction
 // You may use Eigen::Vector and Eigen::SparseVector template
 
-class SVMSample : lib::LabeledSample<third_party::SArray<int>, int> {
+class SVMSample : public LabeledSample<third_party::SArray<int>, int> {
 public:
   void test() {
     for (int i = 0; i < 5; i++) {
