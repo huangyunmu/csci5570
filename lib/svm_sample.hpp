@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include "base/third_party/sarray.h"
-#include "lib/LabeledSample.hpp"
+#include "lib/labeled_sample.hpp"
 namespace csci5570 {
 namespace lib {
 
@@ -12,17 +12,17 @@ class SVMSample : lib::LabeledSample<third_party::SArray<int>, int> {
 public:
   void test() {
     for (int i = 0; i < 5; i++) {
-      this.x_.push_back(i);
+      x_.push_back(i);
     }
-    this.y_ = 2;
+    y_ = 2;
   }
   std::string toString(){
     test();
     std::string result="";
     for (int i = 0; i < 5; i++) {
-        result=result+" "+this.x_[i];
+        result=result+" "+std::to_string(x_[i]);
       }
-    result=result+" "+this.y_;
+    result=result+" "+std::to_string(y_);
     return result;
   }
 
