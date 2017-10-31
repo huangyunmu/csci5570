@@ -2,6 +2,7 @@
 #include "glog/logging.h"
 #include "gtest/gtest.h"
 #include <vector>
+#include "lib/svm_sample.hpp"
 namespace csci5570 {
 
 class TestDataLoader : public testing::Test {
@@ -16,12 +17,13 @@ class TestDataLoader : public testing::Test {
 
 TEST_F(TestDataLoader, LoadData) {
   using DataStore = std::vector<int>;
-  using Sample = lib::LabeledSample<int, int>;
+  using Sample = SVMSample;
   using Parser = lib::Parser<Sample, DataStore>;
   using Parse = int;
   // using Parse=std::function<Sample(boost::string_ref, int)>;
   DataStore data_store;
   Sample svm_sample();
+  LOG(INFO)<<svm_sample.toString();
   Parser svm_parser();
   Parse svm_parse;
   int n_features = 10;
