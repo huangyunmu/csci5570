@@ -9,6 +9,9 @@
 #include "io/line_input_format.hpp"
 #include "lib/abstract_data_loader.hpp"
 #include "lib/labeled_sample.hpp"
+// Modified by hym
+#include "glog/logging.h"
+#include "lib/parser.hpp"
 namespace csci5570 {
 namespace lib {
 
@@ -53,9 +56,19 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
       // Deserialing logic in UDF/application library
       bool success = true;
       int count = 0;
+      lib::Parser<Sample, DataStore> parser;
       boost::string_ref record;
       while (true) {
         success = infmt.next(record);
+
+        switch (parse) {
+        case 1:
+          SVMSample temp_sample = parser.parse_libsvm(record, 10);
+          LOG(INFO) << svm_sample.toString();
+          break;
+        default:
+          break;
+        }
         if (success == false)
           break;
         ++count;
@@ -72,7 +85,7 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
     worker_thread.join();
   }
   void test(){
-    
+
   };
 };  // Class DataLoader
 }  // namespace lib

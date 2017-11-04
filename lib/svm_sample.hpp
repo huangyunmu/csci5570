@@ -10,12 +10,7 @@ namespace lib {
 
 class SVMSample : public LabeledSample<third_party::SArray<int>, int> {
 public:
-  void test() {
-    for (int i = 0; i < 5; i++) {
-      x_.push_back(i);
-    }
-    y_ = 2;
-  }
+  
   std::string toString(){
     test();
     std::string result="";
@@ -25,7 +20,14 @@ public:
     result=result+" "+std::to_string(y_);
     return result;
   }
-
+private:
+  void test() {
+    for (int i = 0; i < 5; i++) {
+      x_.push_back(i);
+    }
+    y_ = 2;
+    
+  }
   //  public:
   //   vector<int> x_;
   //   Label y_;
