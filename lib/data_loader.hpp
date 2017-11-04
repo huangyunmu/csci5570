@@ -62,6 +62,7 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
         success = infmt.next(record);
         SVMSample temp_sample = parser.parse_libsvm(record, 10);
         // LOG(INFO) << temp_sample.toString();
+        break;
         ++count;
       }
       LOG(INFO) << "The number of lines in " << input << " is " << count;
