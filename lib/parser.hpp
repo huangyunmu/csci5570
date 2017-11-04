@@ -39,8 +39,18 @@ class Parser {
     //   }
     // }
     boost::tokenizer<> tok(line);
+    int count=0;
     for (boost::tokenizer<>::iterator beg = tok.begin(); beg != tok.end(); ++beg) {
+      if(count==0){
+        if(lin.substr(0,1)=="+"){
+          LOG(INFO)<<"Positive";
+        }
+        else{
+          LOG(INFO)<<"Negative";
+        }
+      }
       LOG(INFO) << *beg;
+      count++;
     }
     return temp_sample;
   }
