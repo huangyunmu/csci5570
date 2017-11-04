@@ -59,11 +59,14 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
       lib::Parser<Sample, DataStore> parser;
       boost::string_ref record;
       while (true) {
+        LOG(INFO) <<"Example start";
         success = infmt.next(record);
         SVMSample temp_sample = parser.parse_libsvm(record, 10);
-        // LOG(INFO) << temp_sample.toString();
-        break;
+        LOG(INFO) <<"Example end";
         ++count;
+        if(count==20){
+          break;
+        }
       }
       LOG(INFO) << "The number of lines in " << input << " is " << count;
 
