@@ -42,7 +42,7 @@ class Parser {
     int count=0;
     for (boost::tokenizer<>::iterator beg = tok.begin(); beg != tok.end(); ++beg) {
       if(count==0){
-        if(lin.substr(0,1)=="+"){
+        if(line.substr(0,1)=="+"){
           LOG(INFO)<<"Positive";
         }
         else{
