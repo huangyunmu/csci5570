@@ -6,7 +6,7 @@
 #include "lib/svm_sample.hpp"
 // For testing
 #include "glog/logging.h"
-// #include <thread>
+#include <thread>
 namespace csci5570 {
 namespace lib {
 
