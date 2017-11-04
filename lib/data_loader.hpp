@@ -59,10 +59,10 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
       lib::Parser<Sample, DataStore> parser;
       boost::string_ref record;
       while (true) {
-        LOG(INFO) <<"Example start";
+        LOG(INFO) <<"Example start "<<count;
         success = infmt.next(record);
         SVMSample temp_sample = parser.parse_libsvm(record, 10);
-        LOG(INFO) <<"Example end";
+        LOG(INFO) <<"Example end"<<count;
         ++count;
         if(count==20){
           break;
