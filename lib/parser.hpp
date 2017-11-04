@@ -2,6 +2,9 @@
 
 #include "boost/utility/string_ref.hpp"
 #include "lib/svm_sample.hpp"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 namespace csci5570 {
 namespace lib {
 
@@ -20,19 +23,15 @@ class Parser {
     Sample temp_sample = SVMSample();
     char* token = std::strtok_r(line, " ");
     while (token != NULL) {
-      if(token=="+1"){
-      //It is a possitive token 
-      temp_sample.y_=1;
-      }
-      else
-      if(token=="-1"){
-      //It is a negative token
-      temp_sample.y_=0;
-      }
-      else{
-        int position=token.find(":")
-        string sub_str=token.substr(position,token.length()-position);
-        int index=std::stoi(sub_str,NULL,10); 
+      if (token == "+1") {
+        // It is a possitive token
+        temp_sample.y_ = 1;
+      } else if (token == "-1") {
+        // It is a negative token
+        temp_sample.y_ = 0;
+      } else {
+        int position = token.find(":") string sub_str = token.substr(position, token.length() - position);
+        int index = std::stoi(sub_str, NULL, 10);
         temp_sample.x_.push_back(index);
       }
     }
