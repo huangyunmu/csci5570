@@ -26,22 +26,22 @@ class Parser {
     boost::tokenizer<> tok(line);
     int count = 0;
     for (boost::tokenizer<>::iterator beg = tok.begin(); beg != tok.end(); ++beg) {
-      if (count == 0) {
-        if (line.substr(0, 1) == "+") {
-          LOG(INFO) << "Positive";
-          // temp_sample.y_=1;
-        } else {
-          LOG(INFO) << "Negative";
-          // temp_sample.y_=0;
-        }
-      }
-      if (count % 2 == 1) {
-        // int index=stoi(*beg);
-        // temp_sample.x_.push_back(index);
-        LOG(INFO) << *beg;
-        // LOG(INFO)<<index;
-      }
-      count++;
+      // if (count == 0) {
+      //   if (line.substr(0, 1) == "+") {
+      //     LOG(INFO) << "Positive";
+      //     // temp_sample.y_=1;
+      //   } else {
+      //     LOG(INFO) << "Negative";
+      //     // temp_sample.y_=0;
+      //   }
+      // }
+      // if (count % 2 == 1) {
+      //   // int index=stoi(*beg);
+      //   // temp_sample.x_.push_back(index);
+      //   LOG(INFO) << *beg;
+      //   // LOG(INFO)<<index;
+      // }
+      // count++;
     }
     return temp_sample;
   }
