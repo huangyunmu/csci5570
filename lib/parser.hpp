@@ -29,11 +29,11 @@ class Parser {
       if(count==0){
         if(line.substr(0,1)=="+"){
           // LOG(INFO)<<"Positive";
-          temp_sample.y_=1;
+          // temp_sample.y_=1;
         }
         else{
           // LOG(INFO)<<"Negative";
-          temp_sample.y_=0;
+          // temp_sample.y_=0;
         }
       }
       if(count%2==1){
