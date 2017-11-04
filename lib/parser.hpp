@@ -4,6 +4,8 @@
 #include <string>
 #include "boost/utility/string_ref.hpp"
 #include "lib/svm_sample.hpp"
+// For testing
+#include "glog/logging.h"
 namespace csci5570 {
 namespace lib {
 
@@ -37,7 +39,7 @@ class Parser {
     // }
     boost::tokenizer<> tok(line);
     for (boost::tokenizer<>::iterator beg = tok.begin(); beg != tok.end(); ++beg) {
-      cout << *beg << "\n";
+      LOG(INFO) << *beg;
     }
     return temp_sample;
   }
