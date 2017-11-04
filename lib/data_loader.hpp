@@ -10,7 +10,7 @@
 #include "lib/abstract_data_loader.hpp"
 #include "lib/labeled_sample.hpp"
 // Modified by hym
-#include "glog/logging.h"
+// #include "glog/logging.h"
 #include "lib/parser.hpp"
 namespace csci5570 {
 namespace lib {
@@ -61,7 +61,7 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
       while (true) {
         success = infmt.next(record);
         SVMSample temp_sample = parser.parse_libsvm(record, 10);
-        LOG(INFO) << temp_sample.toString();
+        // LOG(INFO) << temp_sample.toString();
         ++count;
       }
       LOG(INFO) << "The number of lines in " << input << " is " << count;
