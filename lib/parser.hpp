@@ -49,7 +49,9 @@ class Parser {
           LOG(INFO)<<"Negative";
         }
       }
-      LOG(INFO) << *beg;
+      if(count%2==2){
+        LOG(INFO) << *beg;
+      }
       count++;
     }
     return temp_sample;
