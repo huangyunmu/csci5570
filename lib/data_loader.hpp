@@ -61,7 +61,7 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
       while (true) {
         success = infmt.next(record);
 
-        switch (parse) {
+        switch ((int)parse) {
         case 1:
           SVMSample temp_sample = parser.parse_libsvm(record, 10);
           LOG(INFO) << svm_sample.toString();
