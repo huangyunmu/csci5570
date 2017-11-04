@@ -49,7 +49,7 @@ class Parser {
           LOG(INFO)<<"Negative";
         }
       }
-      if(count%2==2){
+      if(count%2==1){
         LOG(INFO) << *beg;
       }
       count++;
