@@ -5,8 +5,8 @@
 #include "boost/utility/string_ref.hpp"
 #include "lib/svm_sample.hpp"
 // For testing
-#include "glog/logging.h"
-#include <thread>
+// #include "glog/logging.h"
+// #include <thread>
 namespace csci5570 {
 namespace lib {
 
