@@ -60,17 +60,8 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
       boost::string_ref record;
       while (true) {
         success = infmt.next(record);
-
-        switch ((int)parse) {
-        case 1:
-          SVMSample temp_sample = parser.parse_libsvm(record, 10);
-          LOG(INFO) << svm_sample.toString();
-          break;
-        default:
-          break;
-        }
-        if (success == false)
-          break;
+        SVMSample temp_sample = parser.parse_libsvm(record, 10);
+        LOG(INFO) << svm_sample.toString();
         ++count;
       }
       LOG(INFO) << "The number of lines in " << input << " is " << count;
