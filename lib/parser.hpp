@@ -23,34 +23,22 @@ class Parser {
     // hints: you may use boost::tokenizer, std::strtok_r, std::stringstream or any method you like
     // so far we tried all the tree and found std::strtok_r is fastest :)
     Sample temp_sample = SVMSample();
-    // char* token = std::strtok_r(line, " ");
-    // while (token != NULL) {
-    //   if (token == "+1") {
-    //     // It is a possitive token
-    //     temp_sample.y_ = 1;
-    //   } else if (token == "-1") {
-    //     // It is a negative token
-    //     temp_sample.y_ = 0;
-    //   } else {
-    //     int position = token.find(":");
-    //     string sub_str = token.substr(position, token.length() - position);
-    //     int index = std::stoi(sub_str, NULL, 10);
-    //     temp_sample.x_.push_back(index);
-    //   }
-    // }
     boost::tokenizer<> tok(line);
     int count=0;
     for (boost::tokenizer<>::iterator beg = tok.begin(); beg != tok.end(); ++beg) {
       if(count==0){
         if(line.substr(0,1)=="+"){
-          LOG(INFO)<<"Positive";
+          // LOG(INFO)<<"Positive";
+          temp_sample.y_=1;
         }
         else{
-          LOG(INFO)<<"Negative";
+          // LOG(INFO)<<"Negative";
+          temp_sample.y_=0;
         }
       }
       if(count%2==1){
-        LOG(INFO) << *beg;
+        temp_sample.x_.push_back(atol(*beg));
+        // LOG(INFO) << *beg;
       }
       count++;
     }

@@ -10,9 +10,7 @@ namespace lib {
 
 class SVMSample : public LabeledSample<third_party::SArray<int>, int> {
 public:
-  
   std::string toString(){
-    test();
     std::string result="";
     for (int i = 0; i < 5; i++) {
         result=result+" "+std::to_string(x_[i]);
@@ -20,7 +18,6 @@ public:
     result=result+" "+std::to_string(y_);
     return result;
   }
-private:
   void test() {
     for (int i = 0; i < 5; i++) {
       x_.push_back(i);
