@@ -5,7 +5,7 @@
 #include "boost/utility/string_ref.hpp"
 #include "lib/svm_sample.hpp"
 // For testing
-// #include "glog/logging.h"
+#include "glog/logging.h"
 // #include <thread>
 namespace csci5570 {
 namespace lib {
@@ -28,18 +28,18 @@ class Parser {
     for (boost::tokenizer<>::iterator beg = tok.begin(); beg != tok.end(); ++beg) {
       if(count==0){
         if(line.substr(0,1)=="+"){
-          // LOG(INFO)<<"Positive";
+          LOG(INFO)<<"Positive";
           // temp_sample.y_=1;
         }
         else{
-          // LOG(INFO)<<"Negative";
+          LOG(INFO)<<"Negative";
           // temp_sample.y_=0;
         }
       }
       if(count%2==1){
         // int index=stoi(*beg);
         // temp_sample.x_.push_back(index);
-        // // LOG(INFO) << *beg;
+        LOG(INFO) << *beg;
         // LOG(INFO)<<index;
       }
       count++;

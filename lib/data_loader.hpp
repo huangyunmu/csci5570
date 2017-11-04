@@ -10,8 +10,8 @@
 #include "lib/abstract_data_loader.hpp"
 #include "lib/labeled_sample.hpp"
 // Modified by hym
-// #include "glog/logging.h"
-// #include "lib/parser.hpp"
+#include "glog/logging.h"
+#include "lib/parser.hpp"
 namespace csci5570 {
 namespace lib {
 
