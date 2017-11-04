@@ -8,7 +8,6 @@ add_library(csci5570 STATIC
   $<TARGET_OBJECTS:comm-objs> 
   $<TARGET_OBJECTS:base-objs>
   $<TARGET_OBJECTS:io-objs>
-  $<TARGET_OBJECTS:lib-objs>
   )
 
 # Unit Test
