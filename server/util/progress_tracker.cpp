@@ -8,47 +8,47 @@ void ProgressTracker::Init(const std::vector<uint32_t>& tids) {
   // TODO
   min_clock_ = 0;
   for (int i = 0; i < tids.size(); i++) {
-    progresses_.insert(std::map<int, int>::value_type(tids[i], 0));
+    this->progresses_.insert(std::map<int, int>::value_type(tids[i], 0));
   }
 }
 
 int ProgressTracker::AdvanceAndGetChangedMinClock(int tid) {
   // TODO
-  int newProgress = progresses_[tid] + 1;
+  int newProgress =this->progresses_[tid] + 1;
   if (IsUniqueMin(tid) == true)
   // The min clock need to be updated
   {
-    progresses_[tid] = newProgress;
+    this->progresses_[tid] = newProgress;
     min_clock_++;
     return min_clock_;
   } else {
-    progresses_[tid] = newProgress;
+    this->progresses_[tid] = newProgress;
     return -1;
   }
 }
 
 int ProgressTracker::GetNumThreads() const {
-  return progresses_.size();
+  return this->progresses_.size();
   // TODO
 }
 
 int ProgressTracker::GetProgress(int tid) const {
-  return progresses_[tid];
+  return this->progresses_[tid];
   // TODO
 }
 
 int ProgressTracker::GetMinClock() const {
-  return min_clock_;
+  return this->min_clock_;
   // TODO
 }
 
 bool ProgressTracker::IsUniqueMin(int tid) const {
-  if (progresses_[tid] != GetMinClock()) {
+  if (this->progresses_[tid] != GetMinClock()) {
     // It is not min
     return false;
   }
-  map<int, int>::iterator it = progresses_.begin();
-  for (; it != progresses_.end(); ++it){    
+  std::map<int, int>::iterator it = this->progresses_.begin();
+  for (; it != this->progresses_.end(); ++it){    
     if(it->first!=tid && it->second==GetMinClock()){
       return false;
     }
@@ -59,7 +59,7 @@ bool ProgressTracker::IsUniqueMin(int tid) const {
 }
 
 bool ProgressTracker::CheckThreadValid(int tid) const {
-  return (progresses_.find(tid) != progresses_.end());
+  return (this->progresses_.find(tid) != this->progresses_.end());
   // TODO
 }
 
