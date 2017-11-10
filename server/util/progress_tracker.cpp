@@ -33,7 +33,7 @@ int ProgressTracker::GetNumThreads() const {
 }
 
 int ProgressTracker::GetProgress(int tid) const {
-  int result=this->progresses_[tid]
+  int result=this->progresses_[tid];
   return result;
   // TODO
 }
