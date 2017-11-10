@@ -33,7 +33,7 @@ int ProgressTracker::GetNumThreads() const {
 }
 
 int ProgressTracker::GetProgress(int tid) const {
-  return progresses_.at(tid);
+  return this->progresses_.at(tid);
   // TODO
 }
 
@@ -43,7 +43,7 @@ int ProgressTracker::GetMinClock() const {
 }
 
 bool ProgressTracker::IsUniqueMin(int tid) const {
-  if (this->progresses_[tid] != GetMinClock()) {
+  if this->progresses_.at(tid) != GetMinClock()) {
     // It is not min
     return false;
   }
