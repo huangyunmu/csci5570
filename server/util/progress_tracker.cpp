@@ -15,7 +15,7 @@ void ProgressTracker::Init(const std::vector<uint32_t>& tids) {
 int ProgressTracker::AdvanceAndGetChangedMinClock(int tid) {
   // TODO
   int newProgress = progresses_[tid] + 1;
-  if (IsUniqueMin(tid) == True)
+  if (IsUniqueMin(tid) == true)
   // The min clock need to be updated
   {
     progresses_[tid] = newProgress;
