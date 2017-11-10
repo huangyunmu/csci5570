@@ -8,7 +8,7 @@ void ProgressTracker::Init(const std::vector<uint32_t>& tids) {
   // TODO
   min_clock_ = 0;
   for (int i = 0; i < tids.size(); i++) {
-    progresses_.insert(map<int, int>::value_type(tids[i], 0));
+    progresses_.insert(std::map<int, int>::value_type(tids[i], 0));
   }
 }
 
