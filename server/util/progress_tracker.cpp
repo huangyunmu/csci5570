@@ -47,7 +47,8 @@ bool ProgressTracker::IsUniqueMin(int tid) const {
     // It is not min
     return false;
   }
-  std::map<int, int>::iterator it = this->progresses_.begin();
+  // std::map<int, int>::iterator it = this->progresses_.begin();
+  auto it = this->progresses_.cbegin();
   for (; it != this->progresses_.end(); ++it){    
     if(it->first!=tid && it->second==GetMinClock()){
       return false;
