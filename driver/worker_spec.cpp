@@ -22,7 +22,7 @@ WorkerSpec::WorkerSpec(const std::vector<WorkerAlloc>& worker_alloc) {
     this->node_to_workers_.insert(
         std::map<uint32_t, std::vector<uint32_t>>::value_type(node_id, worker_on_current_node));
   }
-  this->num_workers=current_worker_id;
+  this->num_workers_=current_worker_id;
 }
 bool WorkerSpec::HasLocalWorkers(uint32_t node_id) const {
   /**
