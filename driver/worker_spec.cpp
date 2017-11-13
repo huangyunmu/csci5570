@@ -8,8 +8,8 @@ WorkerSpec::WorkerSpec(const std::vector<WorkerAlloc>& worker_alloc) {
   // {{0, 3}, {1, 2}}: 3 workers on node 0, 2 workers on node 1.
   int current_worker_id = 0;
   for (int i = 0; i < worker_alloc.size(); i++) {
-    int node_id = worker_alloc.node_id;
-    int num_workers = worker_alloc.num_workers;
+    int node_id = worker_alloc[i].node_id;
+    int num_workers = worker_alloc[i].num_workers;
     std::vector<uint32_t> worker_on_current_node;
     for (int i = 0; i < num_workers; i++) {
       // Update worker_to_node
