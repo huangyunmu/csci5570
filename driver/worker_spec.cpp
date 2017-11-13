@@ -28,7 +28,6 @@ bool WorkerSpec::HasLocalWorkers(uint32_t node_id) const {
   /**
    * Check if the local process is allocatd any worker for a task
    */
-  this->progresses_.find(tid) != 
   if (this->node_to_workers_.find(node_id) != this->node_to_workers_.end()) {
     if (this->node_to_workers_.at(node_id).size() > 0)
       return true;
