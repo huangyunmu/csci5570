@@ -25,7 +25,7 @@ TEST_F(TestDataLoader, LoadData) {
   DataStore data_store;
   lib::SVMSample svm_sample;
   // Parser svm_parser();
-  Parse svm_parse=Parser.parse_libsvm(boost::string_ref line, int n_features);
+  Parse svm_parse=Parser.parse_libsvm;
   int n_features = 10;
   std::string url = "hdfs:///datasets/classification/a9";
   lib::DataLoader<lib::SVMSample, DataStore> data_loader;
