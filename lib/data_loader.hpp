@@ -56,11 +56,10 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
       // Deserialing logic in UDF/application library
       bool success = true;
       int count = 0;
-      lib::Parser<Sample, DataStore> parser;
       boost::string_ref record;
       while (true) {
         success = infmt.next(record);
-        SVMSample temp_sample = parser.parse_libsvm(record, 10);
+        SVMSample temp_sample = parse(record, 10);
         LOG(INFO)<<"Sample:"<<count<<" "<<temp_sample.toString();
         ++count;
         if(count==20){

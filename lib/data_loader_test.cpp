@@ -18,11 +18,12 @@ class TestDataLoader : public testing::Test {
 TEST_F(TestDataLoader, LoadData) {
   using DataStore = std::vector<int>;
   using Parser = lib::Parser<lib::SVMSample, DataStore>;
-  using Parse = int;
+  // using Parse = int;
+  using Parse =Parser.parse_libsvm(boost::string_ref line, int n_features);
   // using Parse=std::function<Sample(boost::string_ref, int)>;
   DataStore data_store;
   lib::SVMSample svm_sample;
-  Parser svm_parser();
+  // Parser svm_parser();
   Parse svm_parse;
   int n_features = 10;
   std::string url = "hdfs:///datasets/classification/a9";

@@ -31,7 +31,7 @@ class Parser {
           temp_sample.y_=1;  
         } else {
           // LOG(INFO) << "Negative";
-          temp_sample.y_=0;
+          temp_sample.y_=-1;
         }
       }
       if (count % 2 == 1) {
