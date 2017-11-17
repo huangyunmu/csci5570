@@ -19,6 +19,7 @@ void Engine::StartEverything(int num_server_threads_per_node) {
   // TODO
 }
 void Engine::CreateIdMapper(int num_server_threads_per_node) {
+  id_mapper_->Init(num_server_threads_per_node);
   // TODO
 }
 void Engine::CreateMailbox() {
