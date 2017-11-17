@@ -16,15 +16,16 @@ class TestDataLoader : public testing::Test {
 };
 
 TEST_F(TestDataLoader, LoadData) {
-  using DataStore = std::vector<int>;
+  using DataStore = std::vector<lib::SVMSample>;
   using Parser = lib::Parser<lib::SVMSample, DataStore>;
   // using Parse = int;
-  using Parse =Parser.parse_libsvm(boost::string_ref line, int n_features);
+  using Parse =std::function<lib::SVMSample(boost::string_ref ,int)>;
+ 
   // using Parse=std::function<Sample(boost::string_ref, int)>;
   DataStore data_store;
   lib::SVMSample svm_sample;
   // Parser svm_parser();
-  Parse svm_parse;
+  Parse svm_parse=Parser.parse_libsvm(boost::string_ref line, int n_features);
   int n_features = 10;
   std::string url = "hdfs:///datasets/classification/a9";
   lib::DataLoader<lib::SVMSample, DataStore> data_loader;

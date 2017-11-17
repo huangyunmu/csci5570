@@ -28,14 +28,14 @@ class Parser {
       if (count == 0) {
         if (line.substr(0, 1) == "+") {
           // LOG(INFO) << "Positive";
-          temp_sample.y_=1;  
+          temp_sample.y_ = 1;
         } else {
           // LOG(INFO) << "Negative";
-          temp_sample.y_=-1;
+          temp_sample.y_ = -1;
         }
       }
       if (count % 2 == 1) {
-        int index=stoi(*beg);
+        int index = stoi(*beg);
         temp_sample.x_.push_back(index);
         // LOG(INFO) << *beg;
         // LOG(INFO)<<index;
