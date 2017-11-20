@@ -16,7 +16,7 @@ class TestDataLoader : public testing::Test {
 };
 
 TEST_F(TestDataLoader, LoadData) {
-  using DataStore = std::vector<lib::SVMSample>;
+  using DataStore = third_party::SArray<lib::SVMSample>;
   using Parser = lib::Parser<lib::SVMSample, DataStore>;
   // using Parse = int;
   using Parse =std::function<lib::SVMSample(boost::string_ref ,int)>;

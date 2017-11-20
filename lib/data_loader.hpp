@@ -44,7 +44,7 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
     coordinator.serve();
     LOG(INFO) << "Coordinator begins serving";
 
-    std::thread worker_thread([hdfs_namenode_port, hdfs_namenode, &coordinator, worker_host,parse] {
+    std::thread worker_thread([hdfs_namenode_port, hdfs_namenode, &coordinator, worker_host, parse] {
       std::string input = "hdfs:///datasets/classification/a9";
       int num_threads = 1;
       int second_id = 0;
@@ -60,9 +60,9 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
       while (true) {
         success = infmt.next(record);
         auto temp_sample = parse(record, 10);
-        LOG(INFO)<<"Sample:"<<count<<" "<<temp_sample.toString();
+        LOG(INFO) << "Sample:" << count << " " << temp_sample.toString();
         ++count;
-        if(count==20){
+        if (count == 20) {
           break;
         }
       }
