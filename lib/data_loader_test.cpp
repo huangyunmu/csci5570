@@ -31,6 +31,9 @@ TEST_F(TestDataLoader, LoadData) {
   lib::DataLoader<lib::SVMSample, DataStore> data_loader;
   data_loader.load<Parse>(url, n_features, svm_parse, &data_store);
   data_loader.test();
+  for(int i=0;i<20;i++){
+    LOG(INFO)<<data_store[i];
+  }
 }
 
 }  // namespace csci5570
