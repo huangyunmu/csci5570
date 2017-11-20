@@ -59,7 +59,7 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
       boost::string_ref record;
       while (true) {
         success = infmt.next(record);
-        SVMSample temp_sample = parse(record, 10);
+        auto temp_sample = parse(record, 10);
         LOG(INFO)<<"Sample:"<<count<<" "<<temp_sample.toString();
         ++count;
         if(count==20){
