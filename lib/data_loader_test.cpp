@@ -32,7 +32,7 @@ TEST_F(TestDataLoader, LoadData) {
   data_loader.load<Parse>(url, n_features, svm_parse, &data_store);
   data_loader.test();
   for(int i=0;i<20;i++){
-    LOG(INFO)<<data_store[i];
+    LOG(INFO)<<data_store[i].toString();
   }
 }
 
