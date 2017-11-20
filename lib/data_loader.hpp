@@ -60,7 +60,7 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
       while (true) {
         success = infmt.next(record);
         auto temp_sample = parse(record, 10);
-        LOG(INFO) << "Sample:" << count << " " << temp_sample.toString();
+        // LOG(INFO) << "Sample:" << count << " " << temp_sample.toString();
         datastore->push_back(temp_sample);
         ++count;
         if (count == 20) {
