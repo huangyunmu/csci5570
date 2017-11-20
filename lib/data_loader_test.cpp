@@ -34,6 +34,7 @@ TEST_F(TestDataLoader, LoadData) {
   for (int i = 0; i < data_store.size(); i++) {
     LOG(INFO) << data_store[i].toString();
   }
+  LOG(INFO)<<"Size "<<data_store.size();
 }
 
 }  // namespace csci5570
