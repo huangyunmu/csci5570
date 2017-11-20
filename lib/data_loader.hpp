@@ -59,13 +59,16 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
       boost::string_ref record;
       while (true) {
         success = infmt.next(record);
+        if(!success){
+          break;
+        }
         auto temp_sample = parse(record, 10);
         // LOG(INFO) << "Sample:" << count << " " << temp_sample.toString();
         datastore->push_back(temp_sample);
         ++count;
-        if (count == 20) {
-          break;
-        }
+        // if (count == 20) {
+        //   break;
+        // }
       }
       LOG(INFO) << "The number of lines in " << input << " is " << count;
 
