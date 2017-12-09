@@ -5,7 +5,7 @@ namespace csci5570 {
 std::vector<Message> PendingBuffer::Pop(const int clock) {
   std::unordered_map<int, std::vector<Message>>::iterator iter;
   iter = map_.find(clock);
-  vector<Message> temp;
+  std::vector<Message> temp;
   if (iter != map_.end()) {
     temp = this->map_[clock];
     map_.erase(iter);
