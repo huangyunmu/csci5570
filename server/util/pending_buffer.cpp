@@ -18,7 +18,7 @@ void PendingBuffer::Push(const int clock, Message& msg) { this->map_[clock].push
 int PendingBuffer::Size(const int progress) {
   int result = 0;
   std::unordered_map<int, std::vector<Message>>::iterator iter;
-  iter = map_.find(clock);
+  iter = map_.find(progress);
   if (iter != map_.end()) {
     result = this->map_[progress].size();
   }
