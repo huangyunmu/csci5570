@@ -20,7 +20,7 @@ class PendingBuffer {
    * Return the number of pending requests at the specific progress
    */
   virtual int Size(const int progress);
-   private:
+ private:
   std::unordered_map<int,std::vector<Message>> map_;
 };
 

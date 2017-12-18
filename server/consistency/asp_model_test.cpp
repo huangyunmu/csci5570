@@ -55,7 +55,9 @@ TEST_F(TestASPModel, CheckGetAndAdd) {
   msg.meta.sender = 2;
   msg.meta.recver = 0;
   msg.AddData(third_party::SArray<int>{0});
+  //Add by andy
   model->Get(msg);
+   //After get add by add
   // Get_3_0
   msg = Message();
   msg.meta.flag = Flag::kGet;

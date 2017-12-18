@@ -1,8 +1,5 @@
 include_directories(${PROJECT_SOURCE_DIR} ${HUSKY_EXTERNAL_INCLUDE})
 
-file(GLOB base-src-files
-   test_hdfs_read.cpp
-  )
 add_library(csci5570 STATIC 
   $<TARGET_OBJECTS:server-objs> 
   $<TARGET_OBJECTS:comm-objs> 
