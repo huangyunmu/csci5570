@@ -4,7 +4,11 @@ namespace csci5570 {
 
 	HashPartitionManager::HashPartitionManager(const std::vector<uint32_t>& server_thread_ids)
 		: AbstractPartitionManager(server_thread_ids) {
-		LOG(INFO)<<MD5_Init(100);
+		MD5_CTX ctx; 
+		LOG(INFO)<<MD5_Init(MD5_CTX &ctx);
+		int num=0;
+		MD5_Update(MD5_CTX *c, &num, 10);
+        // unsigned char outmd[16]; 
 	}
 
 	void HashPartitionManager::Slice(const Keys& keys, std::vector<std::pair<int, Keys>>* sliced) const {
