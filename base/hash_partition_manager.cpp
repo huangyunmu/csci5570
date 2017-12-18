@@ -7,7 +7,7 @@ namespace csci5570 {
 		MD5_CTX ctx; 
 		LOG(INFO)<<MD5_Init(&ctx);
 		int num=0;
-		MD5_Update(MD5_CTX *c, &num, 10);
+		MD5_Update(&ctx, &num, 10);
         // unsigned char outmd[16]; 
 	}
 
