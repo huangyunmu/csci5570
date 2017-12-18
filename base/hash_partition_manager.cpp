@@ -40,7 +40,7 @@ void HashPartitionManager::Slice(const Keys& keys, std::vector<std::pair<int, Ke
     sliced->push_back(tempPair);
   }
   for (int i = 0; i < keys.size(); i++) {
-    int target_bucket = this->JumpConsistentHash(keys[i], num_buckets);
+    int target_bucket = this->JumpConsistentHash((int64_t) keys[i], num_buckets);
     sliced[target_bucket].second.push(keys[i]);
   }
 }
