@@ -2,7 +2,7 @@
 
 #include <cinttypes>
 #include <vector>
-
+#include <openssl/md5.h>
 #include "base/abstract_partition_manager.hpp"
 #include "base/magic.hpp"
 #include "base/third_party/sarray.h"
