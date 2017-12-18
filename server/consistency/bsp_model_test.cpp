@@ -32,6 +32,7 @@ TEST_F(TestBSPModel, CheckGetAndAdd) {
   int model_id = 0;
   std::unique_ptr<AbstractStorage> storage(new MapStorage<int>());
   std::unique_ptr<AbstractModel> model(new BSPModel(model_id, std::move(storage), &reply_queue));
+  LOG(INFO)<<"-0.25";
   Message reset_msg;
   third_party::SArray<uint32_t> tids({2, 3});
   reset_msg.AddData(tids);
@@ -40,7 +41,7 @@ TEST_F(TestBSPModel, CheckGetAndAdd) {
   ASSERT_EQ(reply_queue.Size(), 1);
   reply_queue.WaitAndPop(&reset_reply_msg);
   EXPECT_EQ(reset_reply_msg.meta.flag, Flag::kResetWorkerInModel);
-
+  LOG(INFO)<<"-0.5";
   // Message0
   Message m0;
   m0.meta.flag = Flag::kGet;
