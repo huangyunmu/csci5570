@@ -2,7 +2,7 @@
 
 namespace csci5570 {
 
-int32_t HashPartitionManager::JumpConsistentHash(uint64_t key, int32_t num_buckets) const{
+int32_t HashPartitionManager::JumpConsistentHash(uint64_t key, int32_t num_buckets) const {
   int64_t b = -1, j = 0;
   while (j < num_buckets) {
     b = j;
@@ -41,7 +41,7 @@ void HashPartitionManager::Slice(const Keys& keys, std::vector<std::pair<int, Ke
   }
   for (int i = 0; i < keys.size(); i++) {
     int32_t target_bucket = this->JumpConsistentHash((int64_t) keys[i], num_buckets);
-    sliced[target_bucket].second.push_back(keys[i]);
+    sliced[target_bucket].second->push_back(keys[i]);
   }
 }
 
