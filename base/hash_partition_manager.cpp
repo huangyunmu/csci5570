@@ -2,7 +2,7 @@
 
 namespace csci5570 {
 
-int32_t HashPartitionManager::JumpConsistentHash(uint64_t key, int32_t num_buckets) {
+int32_t HashPartitionManager::JumpConsistentHash(uint64_t key, int32_t num_buckets) const{
   int64_t b = -1, j = 0;
   while (j < num_buckets) {
     b = j;
