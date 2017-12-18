@@ -36,6 +36,7 @@ TEST_F(TestBSPModel, CheckGetAndAdd) {
   Message reset_msg;
   third_party::SArray<uint32_t> tids({2, 3});
   reset_msg.AddData(tids);
+  LOG(INFO) << "-0.7";
   model->ResetWorker(reset_msg);
   Message reset_reply_msg;
   LOG(INFO) << "-0.6";
