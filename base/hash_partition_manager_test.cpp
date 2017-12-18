@@ -36,7 +36,9 @@ TEST_F(TestHashPartitionManager, SliceKVs) {
   third_party::SArray<Key> keys({1, 2, 3, 4, 5, 6, 7, 8, 9});
   third_party::SArray<double> vals({.9, .8, .7, .6, .5, .4, .3, .2, .1});
   std::vector<std::pair<int, AbstractPartitionManager::KVPairs>> sliced;
+  LOG(INFO)<<"Start splice";
   pm.Slice(std::make_pair(keys, vals), &sliced);
+  LOG(INFO)<<"End splice";
   LOG(INFO) << sliced.size();
   for (int i = 0; i < sliced.size(); i++) {
     LOG(INFO) << "node id:" << sliced[i].first;
