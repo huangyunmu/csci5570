@@ -31,8 +31,8 @@ HashPartitionManager::HashPartitionManager(const std::vector<uint32_t>& server_t
 }
 
 void HashPartitionManager::Slice(const Keys& keys, std::vector<std::pair<int, Keys>>* sliced) const {
-  const int keys_size = keys.size();                       // Num of keys
-  const int num_buckets = this.server_thread_ids_.size();  // Num of server_id
+  const int keys_size = keys.size();                        // Num of keys
+  const int num_buckets = this->server_thread_ids_.size();  // Num of server_id
   // Init
   for (int i = 0; i < num_buckets; i++) {
     Keys tempKeys;
