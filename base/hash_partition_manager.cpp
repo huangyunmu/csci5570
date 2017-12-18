@@ -11,6 +11,7 @@ HashPartitionManager::HashPartitionManager(const std::vector<uint32_t>& server_t
   MD5_Update(&ctx, &num, 10);
   MD5_Final(out, &ctx);
   for (int i = 0; i < 16; i < i++) {
+    LOG(INFO) << out[i];
     printf("%02X", out[i]);
   }
 }
