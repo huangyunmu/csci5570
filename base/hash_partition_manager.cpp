@@ -14,34 +14,35 @@ int32_t HashPartitionManager::JumpConsistentHash(uint64_t key, int32_t num_bucke
 
 HashPartitionManager::HashPartitionManager(const std::vector<uint32_t>& server_thread_ids)
     : AbstractPartitionManager(server_thread_ids) {
-  // MD5_CTX ctx;
-  // unsigned char out[16];
-  // LOG(INFO) << MD5_Init(&ctx);
-  // int num = 0;
-  // MD5_Update(&ctx, &num, 10);
-  // MD5_Final(out, &ctx);
-  // for (int i = 0; i < 16; i < i++) {
-  //   LOG(INFO) << out[i];
-  //   printf("%02X", out[i]);
-  // }
-  int key;
-  int num_buckets;
-  int result;
-  key = 2000;
-  num_buckets = 5;
-  result = this->JumpConsistentHash(key, num_buckets);
-  LOG(INFO) << "Result(int):" << result;
-  result = this->JumpConsistentHash((int64_t) key, num_buckets);
-  LOG(INFO) << "Result(int64):" << result;
-  key = 2000000;
-  result = this->JumpConsistentHash(key, num_buckets);
-  LOG(INFO) << "Result(int):" << result;
-  result = this->JumpConsistentHash((int64_t) key, num_buckets);
-  LOG(INFO) << "Result(int64):" << result;
+  // int key;
+  // int num_buckets;
+  // int result;
+  // key = 2000;
+  // num_buckets = 10;
+  // result = this->JumpConsistentHash(key, num_buckets);
+  // LOG(INFO) << "Result(int):" << result;
+  // result = this->JumpConsistentHash((int64_t) key, num_buckets);
+  // LOG(INFO) << "Result(int64):" << result;
+  // key = 2000000;
+  // result = this->JumpConsistentHash(key, num_buckets);
+  // LOG(INFO) << "Result(int):" << result;
+  // result = this->JumpConsistentHash((int64_t) key, num_buckets);
+  // LOG(INFO) << "Result(int64):" << result;
 }
 
 void HashPartitionManager::Slice(const Keys& keys, std::vector<std::pair<int, Keys>>* sliced) const {
-  const int keys_size = keys.size();  // Num of keys
+  const int keys_size = keys.size();                       // Num of keys
+  const int num_buckets = this.server_thread_ids_.size();  // Num of server_id
+  // Init
+  for (int i = 0; i < num_buckets; i++) {
+    Keys tempKeys;
+    std::pair<int, Keys> tempPair(this->server_thread_ids_[i], tempKeys);
+    sliced->push_back();
+  }
+  for (int i = 0; i < keys.size(); i++) {
+    int target_bucket = this->JumpConsistentHash(keys[i], num_buckets);
+    sliced[target_bucket].second.push(keys[i]);
+  }
 }
 
 void HashPartitionManager::Slice(const KVPairs& kvs, std::vector<std::pair<int, KVPairs>>* sliced) const {
