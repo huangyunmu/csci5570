@@ -38,6 +38,7 @@ TEST_F(TestBSPModel, CheckGetAndAdd) {
   reset_msg.AddData(tids);
   LOG(INFO) << "-0.7";
   model->ResetWorker(reset_msg);
+  LOG(INFO) << "-0.65";
   Message reset_reply_msg;
   LOG(INFO) << "-0.6";
   ASSERT_EQ(reply_queue.Size(), 1);
