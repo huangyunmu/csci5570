@@ -26,14 +26,15 @@ HashPartitionManager::HashPartitionManager(const std::vector<uint32_t>& server_t
   // }
   int key;
   int num_buckets;
+  int result;
   key = 2000;
   num_buckets = 5;
-  int result = this->JumpConsistentHash(key, num_buckets);
+  result = this->JumpConsistentHash(key, num_buckets);
   LOG(INFO) << "Result(int):" << result;
   result = this->JumpConsistentHash((int64_t) key, num_buckets);
   LOG(INFO) << "Result(int64):" << result;
   key = 2000000;
-  int result = this->JumpConsistentHash(key, num_buckets);
+  result = this->JumpConsistentHash(key, num_buckets);
   LOG(INFO) << "Result(int):" << result;
   result = this->JumpConsistentHash((int64_t) key, num_buckets);
   LOG(INFO) << "Result(int64):" << result;
