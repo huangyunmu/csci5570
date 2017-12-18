@@ -41,7 +41,8 @@ void HashPartitionManager::Slice(const Keys& keys, std::vector<std::pair<int, Ke
   }
   for (int i = 0; i < keys.size(); i++) {
     int32_t target_bucket = this->JumpConsistentHash((int64_t) keys[i], num_buckets);
-    (sliced[this->server_thread_ids_[target_bucket]]).second->push_back(keys[i]);
+    // (sliced[this->server_thread_ids_[target_bucket]]).second->push_back(keys[i]);
+    sliced[0]->second->push_back(keys[i]);
   }
 }
 
