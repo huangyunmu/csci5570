@@ -24,10 +24,18 @@ HashPartitionManager::HashPartitionManager(const std::vector<uint32_t>& server_t
   //   LOG(INFO) << out[i];
   //   printf("%02X", out[i]);
   // }
-  int key = 10;
+  int key = 20000;
   int num_buckets = 5;
   int result = this->JumpConsistentHash(key, num_buckets);
-  LOG(INFO) << "Result" << result;
+  LOG(INFO) << "Result(int):" << result;
+  result = this->JumpConsistentHash((int64_t) key, num_buckets);
+  LOG(INFO) << "Result(int64):" << result;
+  int key = 2000000;
+  int num_buckets = 5;
+  int result = this->JumpConsistentHash(key, num_buckets);
+  LOG(INFO) << "Result(int):" << result;
+  result = this->JumpConsistentHash((int64_t) key, num_buckets);
+  LOG(INFO) << "Result(int64):" << result;
 }
 
 void HashPartitionManager::Slice(const Keys& keys, std::vector<std::pair<int, Keys>>* sliced) const {
