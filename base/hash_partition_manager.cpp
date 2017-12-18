@@ -32,7 +32,7 @@ HashPartitionManager::HashPartitionManager(const std::vector<uint32_t>& server_t
 
 void HashPartitionManager::Slice(const Keys& keys, std::vector<std::pair<int, Keys>>* sliced) const {
   const int keys_size = keys.size();                        // Num of keys
-  const int num_buckets = this->server_thread_ids_.size();  // Num of server_id
+  const int32_t num_buckets = this->server_thread_ids_.size();  // Num of server_id
   // Init
   for (int i = 0; i < num_buckets; i++) {
     Keys tempKeys;
@@ -40,7 +40,7 @@ void HashPartitionManager::Slice(const Keys& keys, std::vector<std::pair<int, Ke
     sliced->push_back(tempPair);
   }
   for (int i = 0; i < keys.size(); i++) {
-    int target_bucket = this->JumpConsistentHash((int64_t) keys[i], num_buckets);
+    int32_t target_bucket = this->JumpConsistentHash((int64_t) keys[i], num_buckets);
     sliced[target_bucket].second.push(keys[i]);
   }
 }
