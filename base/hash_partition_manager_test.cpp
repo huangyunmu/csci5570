@@ -29,20 +29,12 @@ TEST_F(TestHashPartitionManager, SliceKeys) {
       }
     }
   }
-  ASSERT_EQ(sliced.size(), 2);            // 2 slices for 2 servers
-  EXPECT_EQ(sliced[0].first, 0);          // key to server 0
-  EXPECT_EQ(sliced[1].first, 2);          // keys to server 2
-  ASSERT_EQ(sliced[0].second.size(), 1);  // key 2
-  ASSERT_EQ(sliced[1].second.size(), 2);  // keys 8, 9
-  EXPECT_EQ(sliced[0].second[0], 2);
-  EXPECT_EQ(sliced[1].second[0], 8);
-  EXPECT_EQ(sliced[1].second[1], 9);
 }
 
 TEST_F(TestHashPartitionManager, SliceKVs) {
   HashPartitionManager pm({0, 1, 2});
-  third_party::SArray<Key> keys({2, 5, 9});
-  third_party::SArray<double> vals({.2, .5, .9});
+  third_party::SArray<Key> keys({1, 2, 3, 4, 5, 6, 7, 8, 9});
+  third_party::SArray<double> vals({.9, .8, .7, .6, .5, .4, .3, .2, .1});
   std::vector<std::pair<int, AbstractPartitionManager::KVPairs>> sliced;
   pm.Slice(std::make_pair(keys, vals), &sliced);
 }

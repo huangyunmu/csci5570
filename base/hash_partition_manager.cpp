@@ -41,7 +41,8 @@ void HashPartitionManager::Slice(const Keys& keys, std::vector<std::pair<int, Ke
   }
   for (int i = 0; i < keys.size(); i++) {
     int32_t target_bucket = this->JumpConsistentHash((int64_t) keys[i], num_buckets);
-    sliced->at(this->server_thread_ids_[target_bucket]).second.push_back(keys[i]);
+    sliced->at(target_bucket).second.push_back(keys[i]);
+    // sliced->at(this->server_thread_ids_[target_bucket]).second.push_back(keys[i]);
     // sliced->at(0).second.push_back(keys[i]);
   }
 }
@@ -49,8 +50,18 @@ void HashPartitionManager::Slice(const Keys& keys, std::vector<std::pair<int, Ke
 void HashPartitionManager::Slice(const KVPairs& kvs, std::vector<std::pair<int, KVPairs>>* sliced) const {
   Keys keys = kvs.first;
   third_party::SArray<double> vals = kvs.second;
-  const int keys_size = keys.size();  // Num of keys
-  // LOG(INFO) <<"Keys size"<< keys_size;
+  const int keys_size = keys.size();                            // Num of keys
+  const int32_t num_buckets = this->server_thread_ids_.size();  // Num of server_id
+  for (int i = 0; i < num_buckets; i++) {
+    Keys temp_keys;
+    third_party::SArray<double> temp_vals;
+    std::pair<int, KVPairs> temp_pair(this->server_thread_ids_[i], std::make_pair(temp_keys, temp_vals));
+  }
+  for (int i = 0; i < keys.size(); i++) {
+    int32_t target_bucket = this->JumpConsistentHash((int64_t) keys[i], num_buckets);
+    sliced->at(target_bucket).second.first.push_back(keys[i]);
+    sliced->at(target_bucket).second.second.push_back(vals[i]);
+  }
 }
 
 }  // namespace csci5570
