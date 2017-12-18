@@ -41,10 +41,10 @@ TEST_F(TestHashPartitionManager, SliceKVs) {
   LOG(INFO)<<"End splice";
   LOG(INFO) << sliced.size();
   for (int i = 0; i < sliced.size(); i++) {
-    LOG(INFO) << "node id:" << sliced[i].first;
+    LOG(INFO) << "Node id:" << sliced[i].first;
     if (sliced[i].second.first.size() > 0) {
       for (int j = 0; j < sliced[i].second.first.size(); j++) {
-        LOG(INFO) << "Key:" << sliced[i].second.first[j] << "Values:" << sliced[i].second.second[j];
+        LOG(INFO) << "Key:" << sliced[i].second.first[j] << " Values:" << sliced[i].second.second[j];
       }
     }
   }
