@@ -29,7 +29,7 @@ TEST_F(TestAdditionalFeature, LoadHash) {
   BatchIterator<lib::KddSample> batch(data_store);
   std::vector<uint32_t> keys;
   for (int i = 0; i < data_store.size(); i++) {
-    auto sample = datastore[i];
+    auto sample = data_store[i];
     auto& x = sample.x_;
     for (auto& field : x) {
       int key = field.first;
