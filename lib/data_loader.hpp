@@ -56,7 +56,7 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
       LineInputFormat infmt(input, num_threads, second_id, &coordinator, worker_host, hdfs_namenode,
                             hdfs_namenode_port);
       // LOG(INFO) << "Line input is well prepared";
-
+      LOG(INFO) << "After infmt";
       // Line counting demo
       // Deserialing logic in UDF/application library
       bool success = true;
