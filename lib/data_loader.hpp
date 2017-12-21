@@ -46,7 +46,7 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
     LOG(INFO) << "Coordinator begins serving";
     std::string input = "";
     input = url;
-    std::thread worker_thread([input, hdfs_namenode_port, hdfs_namenode, &coordinator, worker_host, parse, &datastore] {
+    std::thread worker_thread([&input, hdfs_namenode_port, hdfs_namenode, &coordinator, worker_host, parse, &datastore] {
       // std::thread worker_thread([&] {
       // std::string input = "hdfs:///datasets/classification/a9";
       // std::string input = "hdfs:///datasets/classification/kdd12";
