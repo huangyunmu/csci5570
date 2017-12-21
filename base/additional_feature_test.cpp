@@ -1,7 +1,6 @@
 #include "glog/logging.h"
 #include "gtest/gtest.h"
 
-#include "base/hash_partition_manager.hpp"
 #include "base/magic.hpp"
 #include "lib/data_loader.hpp"
 #include "lib/kdd_sample.hpp"
