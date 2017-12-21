@@ -12,6 +12,6 @@ class TestAdditionalFeature : public testing::Test {
   void TearDown() {}
 };  // class TestHashPartitionManager
 
-TEST_F(TestAddtionalFeature, Init) {}
+TEST_F(TestAdditionalFeature, Init) {}
 
 }  // namespace csci5570
