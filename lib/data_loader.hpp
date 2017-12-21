@@ -45,13 +45,13 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
     coordinator.serve();
     LOG(INFO) << "Coordinator begins serving";
 
-    std::thread worker_thread([hdfs_namenode_port, hdfs_namenode, &coordinator, worker_host, parse, &datastore] {
+    std::thread worker_thread([url,hdfs_namenode_port, hdfs_namenode, &coordinator, worker_host, parse, &datastore] {
       // std::string input = "hdfs:///datasets/classification/a9";
-      std::string input = "hdfs:///datasets/classification/kdd12";
+      // std::string input = "hdfs:///datasets/classification/kdd12";
       // std::string input = url;
       int num_threads = 1;
       int second_id = 0;
-      LineInputFormat infmt(input, num_threads, second_id, &coordinator, worker_host, hdfs_namenode,
+      LineInputFormat infmt(url, num_threads, second_id, &coordinator, worker_host, hdfs_namenode,
                             hdfs_namenode_port);
       // LOG(INFO) << "Line input is well prepared";
 
