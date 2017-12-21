@@ -47,7 +47,7 @@ class TestAdditionalFeature : public testing::Test {
 };  // class TestHashPartitionManager
 
 TEST_F(TestAdditionalFeature, LoadHash) {
-  third_party::SArray<uint32_t> keys = this.getTestKeys();
+  third_party::SArray<uint32_t> keys = this->getTestKeys();
   HashPartitionManager pm({0, 1, 2, 3, 4, 5});
   std::vector<std::pair<int, AbstractPartitionManager::Keys>> sliced;
   LOG(INFO) << "Start split";
