@@ -3,7 +3,8 @@
 
 #include "base/hash_partition_manager.hpp"
 #include "base/magic.hpp"
-
+#include "lib/data_loader.hpp"
+#include "lib/kdd_sample.hpp"
 namespace csci5570 {
 
 class TestAdditionalFeature : public testing::Test {
@@ -12,6 +13,18 @@ class TestAdditionalFeature : public testing::Test {
   void TearDown() {}
 };  // class TestHashPartitionManager
 
-TEST_F(TestAdditionalFeature, Init) {}
+TEST_F(TestAdditionalFeature, UsingRange) {
+  using DataStore = std::vector<lib::KddSample>;
+  using Parser = lib::Parser<lib::KddSample, DataStore>;
+  using Parse = std::function<lib::KddSample(boost::string_ref, int)>;
+  DataStore data_store;
+  lib::KddSample kdd_sample;
+  auto kdd_parse = Parser::parse_kdd;
+  int n_features = 10;
+  std::string url = "hdfs:///datasets/classification/kdd12";
+  lib::DataLoader<lib::KddSample, DataStore> data_loader;
+  data_loader.load<Parse>(url, n_features, kdd_parse, &data_store);
+
+}
 
 }  // namespace csci5570
