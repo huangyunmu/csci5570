@@ -55,4 +55,19 @@ TEST_F(TestAdditionalFeature, LoadHash) {
   LOG(INFO) << "End split";
 }
 
+TEST_F(TestAdditionalFeature, LoadRange) {
+  third_party::SArray<uint32_t> keys = this->getTestKeys();
+  int rangeLimit = 10000000;
+  RangePartitionManager pm({0, 1, 2, 3, 4, 5}, {{0, rangeLimit},
+                                                {rangeLimit, 2 * rangeLimit},
+                                                {2 * rangeLimit, 3 * rangeLimit},
+                                                {3 * rangeLimit, 4 * rangeLimit},
+                                                {4 * rangeLimit, 5 * rangeLimit},
+                                                {5 * rangeLimit, 6 * rangeLimit}});
+  std::vector<std::pair<int, AbstractPartitionManager::Keys>> sliced;
+  LOG(INFO) << "Start split";
+  pm.Slice(keys, &sliced);
+  LOG(INFO) << "End split";
+}
+
 }  // namespace csci5570
