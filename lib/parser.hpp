@@ -49,30 +49,30 @@ class Parser {
     // check the kdd format and complete the parsing
     Sample temp_sample = KddSample();
 
-    // boost::char_separator<char> sep(" :");
-    // boost::tokenizer<boost::char_separator<char>> tok(line, sep);
+    boost::char_separator<char> sep(" :");
+    boost::tokenizer<boost::char_separator<char>> tok(line, sep);
 
-    // // boost::tokenizer<> tok(line);
-    // int count = 0;
-    // int index=666;
-    // double value=0.66;
-    // for (boost::tokenizer<boost::char_separator<char>>::iterator beg = tok.begin(); beg != tok.end(); ++beg) {
-    //   if (count == 0) {
-    //     if (line.substr(0, 1) == "1") {
-    //       // LOG(INFO) << "Positive";
-    //       temp_sample.y_ = 1;
-    //     } else {
-    //       // LOG(INFO) << "Negative";
-    //       temp_sample.y_ = -1;
-    //     }
-    //   } else if (count % 2 == 1) {
-    //     index = stoi(*beg);
-    //   } else {
-    //     value = stod(*beg);
-    //     // temp_sample.x_.push_back(std::make_pair(index,value));
-    //   }
-    //   count++;
-    // }
+    // boost::tokenizer<> tok(line);
+    int count = 0;
+    int index=666;
+    double value=0.66;
+    for (boost::tokenizer<boost::char_separator<char>>::iterator beg = tok.begin(); beg != tok.end(); ++beg) {
+      if (count == 0) {
+        if (line.substr(0, 1) == "1") {
+          // LOG(INFO) << "Positive";
+          temp_sample.y_ = 1;
+        } else {
+          // LOG(INFO) << "Negative";
+          temp_sample.y_ = -1;
+        }
+      } else if (count % 2 == 1) {
+        index = stoi(*beg);
+      } else {
+        value = stod(*beg);
+        // temp_sample.x_.push_back(std::make_pair(index,value));
+      }
+      count++;
+    }
     return temp_sample;
   }
   static Sample parse_mnist(boost::string_ref line, int n_features) {
