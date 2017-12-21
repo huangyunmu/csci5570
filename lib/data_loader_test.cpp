@@ -50,14 +50,14 @@ TEST_F(TestDataLoader, LoadKddData) {
   // Parser svm_parser();
   auto kdd_parse = Parser::parse_kdd;
   int n_features = 10;
-  std::string url = "hdfs:///datasets/classification/kdd";
+  std::string url = "hdfs:///datasets/classification/kdd12";
   // std::string url = "hdfs:///datasets/classification/a9";
   lib::DataLoader<lib::KddSample, DataStore> data_loader;
   // data_loader.loadKdd<Parse>(url, n_features, kdd_parse, &data_store);
   data_loader.load<Parse>(url, n_features, kdd_parse, &data_store);
-  // for (int i = 0; i < data_store.size(); i++) {
-  //   LOG(INFO) << "Index :" << i << " " << data_store[i].toString();
-  // }
+  for (int i = 0; i < data_store.size(); i++) {
+    LOG(INFO) << "Index :" << i << " " << data_store[i].toString();
+  }
   LOG(INFO) << "Size " << data_store.size();
 }
 
