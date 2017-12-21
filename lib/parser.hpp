@@ -56,6 +56,7 @@ class Parser {
     int count = 0;
     int index = 666;
     double value = 0.66;
+    LOG(INFO)<<"Original string"<<line;
     for (boost::tokenizer<boost::char_separator<char>>::iterator beg = tok.begin(); beg != tok.end(); ++beg) {
       if (count == 0) {
         if (line.substr(0, 1) == "1") {
