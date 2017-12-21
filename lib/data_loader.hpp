@@ -117,8 +117,8 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
     const std::string input = url;
     std::thread worker_thread([hdfs_namenode_port, hdfs_namenode, &coordinator, worker_host, parse, &datastore] {
       // [&input, hdfs_namenode_port, hdfs_namenode, &coordinator, worker_host, parse, &datastore] {
-      std::string input = "hdfs:///datasets/classification/a9";
-      // std::string input = "hdfs:///datasets/classification/kdd12";
+      // std::string input = "hdfs:///datasets/classification/a9";
+      std::string input = "hdfs:///datasets/classification/kdd12";
       // std::string input = url;
       // LOG(INFO) << "In the thread";
       int num_threads = 1;
