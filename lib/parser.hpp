@@ -3,8 +3,8 @@
 #include <boost/tokenizer.hpp>
 #include <string>
 #include "boost/utility/string_ref.hpp"
-#include "lib/svm_sample.hpp"
 #include "lib/kdd_sample.hpp"
+#include "lib/svm_sample.hpp"
 // For testing
 // #include "glog/logging.h"
 namespace csci5570 {
@@ -54,8 +54,8 @@ class Parser {
 
     // boost::tokenizer<> tok(line);
     int count = 0;
-    int index=666;
-    double value=0.66;
+    int index = 666;
+    double value = 0.66;
     for (boost::tokenizer<boost::char_separator<char>>::iterator beg = tok.begin(); beg != tok.end(); ++beg) {
       if (count == 0) {
         if (line.substr(0, 1) == "1") {
@@ -69,9 +69,9 @@ class Parser {
         index = stoi(*beg);
       } else {
         value = stod(*beg);
-        LOG(INFO)<<(*beg);
-        LOG(INFO)<<value;
-        temp_sample.x_.push_back(std::make_pair(index,value));
+        LOG(INFO) << "String:" << (*beg);
+        LOG(INFO) << "Value" << value;
+        temp_sample.x_.push_back(std::make_pair(index, value));
       }
       count++;
     }
