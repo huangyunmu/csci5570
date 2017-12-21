@@ -24,6 +24,7 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
     // 2. Extract and parse lines
     // 3. Put samples into datastore
     std::string hdfs_namenode = "proj10";
+    LOG(INFO) << "URL" << url;
     int hdfs_namenode_port = 9000;
     int master_port = 23489;  // use a random port number to avoid collision with other users
     zmq::context_t zmq_context(1);
@@ -44,10 +45,10 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
     coordinator.serve();
     LOG(INFO) << "Coordinator begins serving";
 
-    std::thread worker_thread([&url, hdfs_namenode_port, hdfs_namenode, &coordinator, worker_host, parse, &datastore] {
+    std::thread worker_thread([hdfs_namenode_port, hdfs_namenode, &coordinator, worker_host, parse, &datastore] {
       // std::string input = "hdfs:///datasets/classification/a9";
-      // std::string input = "hdfs:///datasets/classification/kdd12";
-      std::string input = url;
+      std::string input = "hdfs:///datasets/classification/kdd12";
+      // std::string input = url;
       int num_threads = 1;
       int second_id = 0;
       LineInputFormat infmt(input, num_threads, second_id, &coordinator, worker_host, hdfs_namenode,
