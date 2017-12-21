@@ -69,6 +69,7 @@ class Parser {
         index = stoi(*beg);
       } else {
         value = stod(*beg);
+        LOG(INFO)<<(*beg);
         LOG(INFO)<<value;
         temp_sample.x_.push_back(std::make_pair(index,value));
       }
