@@ -44,7 +44,7 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
     Coordinator coordinator(proc_id, worker_host, &zmq_context, master_host, master_port);
     coordinator.serve();
     LOG(INFO) << "Coordinator begins serving";
-    const std::string input = "";
+    std::string input = "";
     input = url;
     std::thread worker_thread([input, hdfs_namenode_port, hdfs_namenode, &coordinator, worker_host, parse, &datastore] {
       // std::thread worker_thread([&] {
@@ -54,7 +54,7 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
       LOG(INFO) << "In the thread";
       int num_threads = 1;
       int second_id = 0;
-      LOG(INFO)<<input;
+      LOG(INFO)<<input
       LineInputFormat infmt(input, num_threads, second_id, &coordinator, worker_host, hdfs_namenode,
                             hdfs_namenode_port);
       // LOG(INFO) << "Line input is well prepared";
