@@ -26,7 +26,7 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
     std::string hdfs_namenode = "proj10";
     LOG(INFO) << "URL:" << url;
     int hdfs_namenode_port = 9000;
-    int master_port = 23489;  // use a random port number to avoid collision with other users
+    int master_port = 45743;  // use a random port number to avoid collision with other users
     zmq::context_t zmq_context(1);
 
     // 1. Spawn the HDFS block assigner thread on the master
