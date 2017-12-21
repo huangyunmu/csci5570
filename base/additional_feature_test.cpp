@@ -6,6 +6,7 @@
 #include "lib/kdd_sample.hpp"
 
 #include "base/hash_partition_manager.hpp"
+#include "base/range_partition_manager.hpp"
 #include "lib/batchiterator.hpp"
 namespace csci5570 {
 
