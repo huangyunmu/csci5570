@@ -7,8 +7,7 @@ namespace lib {
 
 // Consider both sparse and dense feature abstraction
 // You may use Eigen::Vector and Eigen::SparseVector template
-
-class KddSample : public LabeledSample<third_party::SArray<std::pair<int, double>, int>> {
+class KddSample : public LabeledSample<third_party::SArray<std::pair<int, double>>, int> {
  public:
   std::string toString() {
     std::string result = "Label: " + std::to_string(y_) + " Feature:";
