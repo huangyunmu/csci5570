@@ -66,9 +66,9 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
         // LOG(INFO) << "Sample:" << count << " " << temp_sample.toString();
         datastore->push_back(temp_sample);
         ++count;
-        // if (count == 20) {
-        //   break;
-        // }
+        if (count == 20) {
+          break;
+        }
       }
       LOG(INFO) << "The number of lines in " << input << " is " << count;
 
