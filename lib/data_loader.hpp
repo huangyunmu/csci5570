@@ -54,7 +54,7 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
       LOG(INFO) << "In the thread";
       int num_threads = 1;
       int second_id = 0;
-      LOG(INFO)<<input
+      LOG(INFO)<<input;
       LineInputFormat infmt(input, num_threads, second_id, &coordinator, worker_host, hdfs_namenode,
                             hdfs_namenode_port);
       // LOG(INFO) << "Line input is well prepared";
