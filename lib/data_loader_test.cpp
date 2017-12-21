@@ -51,7 +51,7 @@ TEST_F(TestDataLoader, LoadKddData) {
   int n_features = 10;
   std::string url = "hdfs:///datasets/classification/kdd";
   lib::DataLoader<lib::KddSample, DataStore> data_loader;
-  data_loader.load<Parse>(url, n_features, kdd_parse, &data_store);
+  data_loader.load<Parse>(&url, n_features, kdd_parse, &data_store);
   data_loader.test();
   for (int i = 0; i < data_store.size(); i++) {
     LOG(INFO) <<"Index :"<<i<<" "<<data_store[i].toString();
