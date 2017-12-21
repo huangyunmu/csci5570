@@ -45,50 +45,50 @@ class DataLoader : public AbstractDataLoader<Sample, DataStore> {
     coordinator.serve();
     LOG(INFO) << "Coordinator begins serving";
     const std::string input = url;
-    std::thread worker_thread(
-        [&input, hdfs_namenode_port, hdfs_namenode, &coordinator, worker_host, parse, &datastore] {
-          // std::thread worker_thread([&] {
-          // std::string input = "hdfs:///datasets/classification/a9";
-          // std::string input = "hdfs:///datasets/classification/kdd12";
-          // std::string input = url;
-          LOG(INFO) << "In the thread";
-          int num_threads = 1;
-          int second_id = 0;
-          LOG(INFO) << "Print input";
-          LOG(INFO) << input;
-          LineInputFormat infmt(input, num_threads, second_id, &coordinator, worker_host, hdfs_namenode,
-                                hdfs_namenode_port);
-          // LOG(INFO) << "Line input is well prepared";
-          LOG(INFO) << "After infmt";
-          // Line counting demo
-          // Deserialing logic in UDF/application library
-          bool success = true;
-          int count = 0;
-          boost::string_ref record;
-          while (true) {
-            success = infmt.next(record);
-            if (!success) {
-              break;
-            }
-            auto temp_sample = parse(record, 10);
-            // LOG(INFO) << "Sample:" << count << " " << temp_sample.toString();
-            datastore->push_back(temp_sample);
-            ++count;
-            if (count == 20) {
-              break;
-            }
-          }
-          LOG(INFO) << "The number of lines:" << count;
+    std::thread worker_thread([hdfs_namenode_port, hdfs_namenode, &coordinator, worker_host, parse, &datastore] {
+      // [&input, hdfs_namenode_port, hdfs_namenode, &coordinator, worker_host, parse, &datastore] {
+      std::string input = "hdfs:///datasets/classification/a9";
+      // std::string input = "hdfs:///datasets/classification/kdd12";
+      // std::string input = url;
+      // LOG(INFO) << "In the thread";
+      int num_threads = 1;
+      int second_id = 0;
+      // LOG(INFO) << "Print input";
+      LOG(INFO) << input;
+      LineInputFormat infmt(input, num_threads, second_id, &coordinator, worker_host, hdfs_namenode,
+                            hdfs_namenode_port);
+      // LOG(INFO) << "Line input is well prepared";
+      // LOG(INFO) << "After infmt";
+      // Line counting demo
+      // Deserialing logic in UDF/application library
+      bool success = true;
+      int count = 0;
+      boost::string_ref record;
+      while (true) {
+        success = infmt.next(record);
+        if (!success) {
+          break;
+        }
+        auto temp_sample = parse(record, 10);
+        // LOG(INFO) << "Sample:" << count << " " << temp_sample.toString();
+        datastore->push_back(temp_sample);
+        ++count;
+        if (count == 20) {
+          break;
+        }
+      }
+      LOG(INFO) << "The number of lines:" << count;
 
-          // Remember to notify master that the worker wants to exit
-          BinStream finish_signal;
-          finish_signal << worker_host << second_id;
-          coordinator.notify_master(finish_signal, 300);
-        });
+      // Remember to notify master that the worker wants to exit
+      BinStream finish_signal;
+      finish_signal << worker_host << second_id;
+      coordinator.notify_master(finish_signal, 300);
+    });
     // Make sure zmq_context and coordinator live long enough
     master_thread.join();
     worker_thread.join();
   }
+  
   void test(){
 
   };
