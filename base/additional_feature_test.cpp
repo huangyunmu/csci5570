@@ -27,23 +27,27 @@ TEST_F(TestAdditionalFeature, LoadHash) {
   lib::DataLoader<lib::KddSample, DataStore> data_loader;
   data_loader.load<Parse>(url, n_features, kdd_parse, &data_store);
   BatchIterator<lib::KddSample> batch(data_store);
-  third_party::SArray<uint32_t> keys;
-  // std::vector<uint32_t> keys;
+  // third_party::SArray<uint32_t> keys;
+  std::vector<uint32_t> keys;
   for (int i = 0; i < data_store.size(); i++) {
     auto sample = data_store[i];
     auto& x = sample.x_;
     for (auto& field : x) {
       int key = field.first;
-      third_party::SArray<uint32_t>::iterator result = find(keys.begin(), keys.end(), key);
+      std::vector<uint32_t>::iterator result = find(keys.begin(), keys.end(), key);
       if (result == keys.end()) {
         keys.push_back(key);
       }
     }
   }
+  third_party::SArray<uint32_t> testKeys;
+  for (int i = 0; i < keys.size(); i++) {
+    testKeys.push_back(keys[i]);
+  }
   HashPartitionManager pm({0, 1, 2});
   std::vector<std::pair<int, AbstractPartitionManager::Keys>> sliced;
   LOG(INFO) << "Start split";
-  pm.Slice(keys, &sliced);
+  pm.Slice(testKeys, &sliced);
   LOG(INFO) << "End split";
 }
 
