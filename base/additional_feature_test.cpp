@@ -6,7 +6,7 @@
 
 namespace csci5570 {
 
-class TestAddtionalFeature : public testing::Test {
+class TestAdditionalFeature : public testing::Test {
  protected:
   void SetUp() {}
   void TearDown() {}
