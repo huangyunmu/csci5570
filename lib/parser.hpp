@@ -56,7 +56,7 @@ class Parser {
     int count = 0;
     int index = 666;
     double value = 0.66;
-    LOG(INFO)<<"Original string"<<line;
+    // LOG(INFO) << "Original string" << line;
     for (boost::tokenizer<boost::char_separator<char>>::iterator beg = tok.begin(); beg != tok.end(); ++beg) {
       if (count == 0) {
         if (line.substr(0, 1) == "1") {
@@ -70,8 +70,8 @@ class Parser {
         index = stoi(*beg);
       } else {
         value = stod(*beg);
-        LOG(INFO) << "String:" << (*beg);
-        LOG(INFO) << "Value" << value;
+        // LOG(INFO) << "String:" << (*beg);
+        // LOG(INFO) << "Value" << value;
         temp_sample.x_.push_back(std::make_pair(index, value));
       }
       count++;
