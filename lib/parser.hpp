@@ -4,6 +4,7 @@
 #include <string>
 #include "boost/utility/string_ref.hpp"
 #include "lib/svm_sample.hpp"
+#include "lib/kdd_sample.hpp"
 // For testing
 // #include "glog/logging.h"
 namespace csci5570 {
