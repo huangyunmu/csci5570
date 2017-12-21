@@ -19,7 +19,7 @@ class KddSample : public LabeledSample<third_party::SArray<std::pair<int, double
   }
   void test() {
     for (int i = 0; i < 5; i++) {
-      x_.push_back(double(i));
+      x_.push_back(std::make_pair(1,1.2));
     }
     y_ = 2;
   }
