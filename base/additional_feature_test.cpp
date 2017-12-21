@@ -27,8 +27,18 @@ TEST_F(TestAdditionalFeature, LoadHash) {
   lib::DataLoader<lib::KddSample, DataStore> data_loader;
   data_loader.load<Parse>(url, n_features, kdd_parse, &data_store);
   BatchIterator<lib::KddSample> batch(data_store);
-  auto keys_data = batch.NextBatch(20000);
-  auto keys = keys_data.first;
+  std::vector<uint32_t> keys;
+  for (int i = 0; i < data_store.size(); i++) {
+    auto sample = datastore[i];
+    auto& x = sample.x_;
+    for (auto& field : x) {
+      int key = field.first;
+      std::vector<uint32_t>::iterator result = find(keys.begin(), keys.end(), key);
+      if (result == keys.end()) {
+        keys.push_back(key);
+      }
+    }
+  }
   HashPartitionManager pm({0, 1, 2});
   std::vector<std::pair<int, AbstractPartitionManager::Keys>> sliced;
   LOG(INFO) << "Start split";
