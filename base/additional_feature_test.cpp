@@ -13,41 +13,45 @@ class TestAdditionalFeature : public testing::Test {
  protected:
   void SetUp() {}
   void TearDown() {}
+  third_party::SArray<uint32_t> getTestKeys() {
+    using DataStore = std::vector<lib::KddSample>;
+    using Parser = lib::Parser<lib::KddSample, DataStore>;
+    using Parse = std::function<lib::KddSample(boost::string_ref, int)>;
+    DataStore data_store;
+    lib::KddSample kdd_sample;
+    auto kdd_parse = Parser::parse_kdd;
+    int n_features = 10;
+    std::string url = "hdfs:///datasets/classification/kdd12";
+    lib::DataLoader<lib::KddSample, DataStore> data_loader;
+    data_loader.load<Parse>(url, n_features, kdd_parse, &data_store);
+    BatchIterator<lib::KddSample> batch(data_store);
+    // third_party::SArray<uint32_t> keys;
+    std::vector<uint32_t> keys;
+    for (int i = 0; i < data_store.size(); i++) {
+      auto sample = data_store[i];
+      auto& x = sample.x_;
+      for (auto& field : x) {
+        int key = field.first;
+        std::vector<uint32_t>::iterator result = find(keys.begin(), keys.end(), key);
+        if (result == keys.end()) {
+          keys.push_back(key);
+        }
+      }
+    }
+    third_party::SArray<uint32_t> testKeys;
+    for (int i = 0; i < keys.size(); i++) {
+      testKeys.push_back(keys[i]);
+    }
+    return testKeys;
+  }
 };  // class TestHashPartitionManager
 
 TEST_F(TestAdditionalFeature, LoadHash) {
-  using DataStore = std::vector<lib::KddSample>;
-  using Parser = lib::Parser<lib::KddSample, DataStore>;
-  using Parse = std::function<lib::KddSample(boost::string_ref, int)>;
-  DataStore data_store;
-  lib::KddSample kdd_sample;
-  auto kdd_parse = Parser::parse_kdd;
-  int n_features = 10;
-  std::string url = "hdfs:///datasets/classification/kdd12";
-  lib::DataLoader<lib::KddSample, DataStore> data_loader;
-  data_loader.load<Parse>(url, n_features, kdd_parse, &data_store);
-  BatchIterator<lib::KddSample> batch(data_store);
-  // third_party::SArray<uint32_t> keys;
-  std::vector<uint32_t> keys;
-  for (int i = 0; i < data_store.size(); i++) {
-    auto sample = data_store[i];
-    auto& x = sample.x_;
-    for (auto& field : x) {
-      int key = field.first;
-      std::vector<uint32_t>::iterator result = find(keys.begin(), keys.end(), key);
-      if (result == keys.end()) {
-        keys.push_back(key);
-      }
-    }
-  }
-  third_party::SArray<uint32_t> testKeys;
-  for (int i = 0; i < keys.size(); i++) {
-    testKeys.push_back(keys[i]);
-  }
-  HashPartitionManager pm({0, 1, 2});
+  third_party::SArray<uint32_t> keys = this.getTestKeys();
+  HashPartitionManager pm({0, 1, 2, 3, 4, 5});
   std::vector<std::pair<int, AbstractPartitionManager::Keys>> sliced;
   LOG(INFO) << "Start split";
-  pm.Slice(testKeys, &sliced);
+  pm.Slice(keys, &sliced);
   LOG(INFO) << "End split";
 }
 
