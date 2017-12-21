@@ -54,26 +54,15 @@ int BSPModel::GetAddPendingSize() {
 void BSPModel::ResetWorker(Message& msg) {
   // TODO
 
-  // msg.meta.flag=Flag::kResetWorkerInModel;
-  // third_party::SArray<int> tidstemp;
-  // tidstemp = msg.data[0];
-  // std::vector<uint32_t> tids;
-  // for(size_t i=0; i<tidstemp.size();i++){
-  //   tids.push_back(tidstemp[i]);
-  // }
-  // progress_tracker_.Init(tids);
-  // reply_queue_->Push(msg);
-
-  CHECK_EQ(msg.data.size(), 1);
-  third_party::SArray<uint32_t> tids;
-  tids = msg.data[0];
-  std::vector<uint32_t> tids_vec(tids.begin(), tids.end());
-  this->progress_tracker_.Init(tids_vec);
-  Message reply_msg;
-  reply_msg.meta.model_id = model_id_;
-  reply_msg.meta.recver = msg.meta.sender;
-  reply_msg.meta.flag = Flag::kResetWorkerInModel;
-  reply_queue_->Push(reply_msg);
+  msg.meta.flag=Flag::kResetWorkerInModel;
+  third_party::SArray<int> tidstemp;
+  tidstemp = msg.data[0];
+  std::vector<uint32_t> tids;
+  for(size_t i=0; i<tidstemp.size();i++){
+    tids.push_back(tidstemp[i]);
+  }
+  progress_tracker_.Init(tids);
+  reply_queue_->Push(msg);
 }
 
 }  // namespace csci5570

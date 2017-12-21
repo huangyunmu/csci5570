@@ -5,8 +5,8 @@
 #include "glog/logging.h"
 
 #include "io/coordinator.hpp"
-#include "io/hdfs_assigner.hpp"
 #include "io/hdfs_file_splitter.hpp"
+#include "io/hdfs_assigner.hpp"
 
 namespace csci5570 {
 
@@ -18,7 +18,6 @@ class LineInputFormat {
     id_ = id;
     splitter_ = new HDFSFileSplitter(num_threads, id, coordinator, hostname, hdfs_namenode, hdfs_namenode_port);
     // set_up url
-    LOG(INFO) << "Url" << url;
     set_splitter(url);
   }
 

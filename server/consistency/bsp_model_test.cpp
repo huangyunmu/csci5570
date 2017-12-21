@@ -27,24 +27,19 @@ TEST_F(TestBSPModel, CheckConstructor) {
 }
 
 TEST_F(TestBSPModel, CheckGetAndAdd) {
-  LOG(INFO) << "-1";
   ThreadsafeQueue<Message> reply_queue;
   int model_id = 0;
   std::unique_ptr<AbstractStorage> storage(new MapStorage<int>());
   std::unique_ptr<AbstractModel> model(new BSPModel(model_id, std::move(storage), &reply_queue));
-  LOG(INFO) << "-0.75";
   Message reset_msg;
   third_party::SArray<uint32_t> tids({2, 3});
   reset_msg.AddData(tids);
-  LOG(INFO) << "-0.7";
   model->ResetWorker(reset_msg);
-  LOG(INFO) << "-0.65";
   Message reset_reply_msg;
-  LOG(INFO) << "-0.6";
   ASSERT_EQ(reply_queue.Size(), 1);
   reply_queue.WaitAndPop(&reset_reply_msg);
   EXPECT_EQ(reset_reply_msg.meta.flag, Flag::kResetWorkerInModel);
-  LOG(INFO) << "-0.5";
+
   // Message0
   Message m0;
   m0.meta.flag = Flag::kGet;
@@ -59,7 +54,6 @@ TEST_F(TestBSPModel, CheckGetAndAdd) {
   Message useless0;
   reply_queue.WaitAndPop(&useless0);
 
-  LOG(INFO) << "0";
   // Message1
   Message m1;
   m1.meta.flag = Flag::kAdd;
@@ -71,7 +65,7 @@ TEST_F(TestBSPModel, CheckGetAndAdd) {
   m1.AddData(m1_keys);
   m1.AddData(m1_vals);
   model->Add(m1);
-  LOG(INFO) << "1";
+
   // Message2
   Message m2;
   m2.meta.flag = Flag::kClock;
@@ -83,7 +77,7 @@ TEST_F(TestBSPModel, CheckGetAndAdd) {
   EXPECT_EQ(model->GetProgress(2), 1);
   EXPECT_EQ(model->GetProgress(3), 0);
   EXPECT_EQ(dynamic_cast<BSPModel*>(model.get())->GetAddPendingSize(), 1);
-  LOG(INFO) << "2";
+
   // Check Message 1
   Message cm1;
   cm1.meta.flag = Flag::kGet;
@@ -93,7 +87,7 @@ TEST_F(TestBSPModel, CheckGetAndAdd) {
   third_party::SArray<int> cm1_keys({1});
   cm1.AddData(cm1_keys);
   model->Get(cm1);
-  LOG(INFO) << "Check 1";
+
   Message check_msg;
   ASSERT_EQ(reply_queue.Size(), 1);
   reply_queue.WaitAndPop(&check_msg);
@@ -114,7 +108,7 @@ TEST_F(TestBSPModel, CheckGetAndAdd) {
   EXPECT_EQ(model->GetProgress(2), 1);
   EXPECT_EQ(model->GetProgress(3), 1);
   EXPECT_EQ(dynamic_cast<BSPModel*>(model.get())->GetAddPendingSize(), 0);
-  LOG(INFO) << "3";
+
   // Check Message 2
   Message cm2;
   cm2.meta.flag = Flag::kGet;
@@ -133,7 +127,6 @@ TEST_F(TestBSPModel, CheckGetAndAdd) {
   EXPECT_EQ(rep_keys2.size(), 1);
   ASSERT_EQ(rep_vals2.size(), 1);
   EXPECT_EQ(rep_vals2[0], 100);
-  LOG(INFO) << "Check 2";
 }
 
 }  // namespace

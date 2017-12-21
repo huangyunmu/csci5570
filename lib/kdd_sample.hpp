@@ -18,7 +18,7 @@ class KddSample : public LabeledSample<std::vector<std::pair<int, double>>, int>
   }
   void test() {
     for (int i = 0; i < 5; i++) {
-      x_.push_back(std::make_pair(1,1.2));
+      x_.push_back(std::make_pair(1, 1.2));
     }
     y_ = 2;
   }

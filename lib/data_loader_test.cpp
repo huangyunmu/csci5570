@@ -29,7 +29,6 @@ TEST_F(TestDataLoader, LoadSVMData) {
   auto svm_parse = Parser::parse_libsvm;
   int n_features = 10;
   std::string url = "hdfs:///datasets/classification/a9";
-  // std::string url = "hdfs:///datasets/classification/kdd";
   lib::DataLoader<lib::SVMSample, DataStore> data_loader;
   data_loader.load<Parse>(url, n_features, svm_parse, &data_store);
   data_loader.test();
@@ -51,10 +50,9 @@ TEST_F(TestDataLoader, LoadKddData) {
   auto kdd_parse = Parser::parse_kdd;
   int n_features = 10;
   std::string url = "hdfs:///datasets/classification/kdd12";
-  // std::string url = "hdfs:///datasets/classification/a9";
   lib::DataLoader<lib::KddSample, DataStore> data_loader;
-  // data_loader.loadKdd<Parse>(url, n_features, kdd_parse, &data_store);
   data_loader.load<Parse>(url, n_features, kdd_parse, &data_store);
+  data_loader.test();
   for (int i = 0; i < data_store.size(); i++) {
     LOG(INFO) << "Index :" << i << " " << data_store[i].toString();
   }
