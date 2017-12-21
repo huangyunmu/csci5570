@@ -54,6 +54,10 @@ TEST_F(TestAdditionalFeature, LoadHash) {
   LOG(INFO) << "Start split";
   pm.Slice(keys, &sliced);
   LOG(INFO) << "End split";
+  LOG(INFO) << "Key distribution";
+  for (int i = 0; i < 6; i++) {
+    LOG(INFO) << "Number of keys on server:" << i << " is " << sliced[i].second.size();
+  }
 }
 
 TEST_F(TestAdditionalFeature, LoadRange) {
@@ -69,6 +73,10 @@ TEST_F(TestAdditionalFeature, LoadRange) {
   LOG(INFO) << "Start split";
   pm.Slice(keys, &sliced);
   LOG(INFO) << "End split";
+  LOG(INFO) << "Key distribution";
+  for (int i = 0; i < 6; i++) {
+    LOG(INFO) << "Number of keys on server:" << i << " is " << sliced[i].second.size();
+  }
 }
 
 }  // namespace csci5570
