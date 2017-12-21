@@ -27,13 +27,14 @@ TEST_F(TestAdditionalFeature, LoadHash) {
   lib::DataLoader<lib::KddSample, DataStore> data_loader;
   data_loader.load<Parse>(url, n_features, kdd_parse, &data_store);
   BatchIterator<lib::KddSample> batch(data_store);
-  std::vector<uint32_t> keys;
+  third_party::SArray<uint32_t> keys;
+  // std::vector<uint32_t> keys;
   for (int i = 0; i < data_store.size(); i++) {
     auto sample = data_store[i];
     auto& x = sample.x_;
     for (auto& field : x) {
       int key = field.first;
-      std::vector<uint32_t>::iterator result = find(keys.begin(), keys.end(), key);
+      third_party::SArray<uint32_t>::iterator result = find(keys.begin(), keys.end(), key);
       if (result == keys.end()) {
         keys.push_back(key);
       }
