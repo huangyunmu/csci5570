@@ -69,7 +69,7 @@ class Parser {
         index = stoi(*beg);
       } else {
         value = stod(*beg);
-        // temp_sample.x_.push_back(std::make_pair(index,value));
+        temp_sample.x_.push_back(std::make_pair(index,value));
       }
       count++;
     }
