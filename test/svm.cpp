@@ -104,6 +104,7 @@ void SVMTest(uint32_t node_id, int num_of_node) {
   int hdfs_namenode_port = 9000;                               // Do not change
   int master_port = 41984;                                     // Do not change
   int node_port = 52324;
+  int workers_per_node = 5;
   lib::DataLoader<lib::KddSample, DataStore> data_loader;
   data_loader.load<Parse>(url, hdfs_namenode, master_host, worker_host, hdfs_namenode_port, master_port, n_features,
                           kdd_parse, &data_store);
@@ -124,14 +125,14 @@ void SVMTest(uint32_t node_id, int num_of_node) {
   // Specify task
   MLTask task;
   task.SetTables({kTable});
-  //   std::vector<WorkerAlloc> worker_alloc;
-  //   for (int i = 0; i < n_nodes; ++i) {
-  // woker_alloc.push_back({nodes[i].id, static_cast<uint32_t>(FLAGS_n_workers_per_node)});
-  //     woker_alloc.push_back({nodes[i].id, 1});
-  //   }
-  //   task.SetWorkerAlloc(worker_alloc);
+  std::vector<WorkerAlloc> worker_alloc;
+  for (int i = 0; i < num_of_node; ++i) {
+    woker_alloc.push_back({nodes[i].id, static_cast<uint32_t>(workers_per_node)});
+    // woker_alloc.push_back({nodes[i].id, 1});
+  }
+  task.SetWorkerAlloc(worker_alloc);
   // task.SetWorkerAlloc({{0, 5}, {1, 5}});
-  task.SetWorkerAlloc({{9, 5}, {10, 5}});
+  // task.SetWorkerAlloc({{9, 5}, {10, 5}});
   // get client table
   // Before learning
   LOG(INFO) << "Before learning";
