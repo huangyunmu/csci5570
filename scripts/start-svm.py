@@ -7,4 +7,5 @@ for i in range(0,num_of_nodes):
         break
     if(i<num_of_nodes):
         cmd=cmd+" & "
+print cmd
 os.system(cmd)
