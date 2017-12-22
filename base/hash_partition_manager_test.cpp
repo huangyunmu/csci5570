@@ -29,25 +29,17 @@ TEST_F(TestHashPartitionManager, SliceKeys) {
       }
     }
   }
-  third_party::SArray<Key> keys_2({
-      1,
-      8,
-      9,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-  });
-  pm.Slice(keys_2, &sliced);
-  LOG(INFO) << sliced.size();
-  for (int i = 0; i < sliced.size(); i++) {
-    LOG(INFO) << "node id:" << sliced[i].first;
-    if (sliced[i].second.size() > 0) {
+  third_party::SArray<Key> keys_2({1, 8, 9, 2, 3, 4, 5, 6, 7, 12, 13});
+  std::vector<std::pair<int, AbstractPartitionManager::Keys>> sliced_2;
+  pm.Slice(keys_2, &sliced_2);
+
+  LOG(INFO) << sliced_2.size();
+  for (int i = 0; i < sliced_2.size(); i++) {
+    LOG(INFO) << "node id:" << sliced_2[i].first;
+    if (sliced_2[i].second.size() > 0) {
       LOG(INFO) << "keys:";
-      for (int j = 0; j < sliced[i].second.size(); j++) {
-        LOG(INFO) << sliced[i].second[j];
+      for (int j = 0; j < sliced_2[i].second.size(); j++) {
+        LOG(INFO) << sliced_2[i].second[j];
       }
     }
   }
