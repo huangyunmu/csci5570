@@ -103,14 +103,15 @@ void SVMTest(uint32_t node_id, int num_of_node) {
   std::string worker_host = "proj" + std::to_string(node_id);  // Set to worker name
   int hdfs_namenode_port = 9000;                               // Do not change
   int master_port = 41984;                                     // Do not change
+  int node_port=52324;
   lib::DataLoader<lib::KddSample, DataStore> data_loader;
   data_loader.load<Parse>(url, hdfs_namenode, master_host, worker_host, hdfs_namenode_port, master_port, n_features,
                           kdd_parse, &data_store);
   uint32_t n = node_id;
-  Node node{n, "proj" + std::to_string(node_id), 26534};
+  Node node{n, "proj" + std::to_string(node_id), node_port};
   std::vector<Node> nodes;
   for (uint32_t i = 0; i < num_of_node; i++) {
-    Node nodet{10 - i, "proj" + std::to_string(10 - i), 26534};
+    Node nodet{10 - i, "proj" + std::to_string(10 - i), node_port};
     nodes.push_back(nodet);
   }
   LOG(INFO) << node.hostname;
