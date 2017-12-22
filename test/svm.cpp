@@ -196,7 +196,7 @@ int main(int argc, char** argv) {
   uint32_t node_id;
   node_id = atoi(argv[1]);
   int num_of_node = atoi(argv[2]);
-  int node_port = atoi(argv[2]);
+  int node_port = atoi(argv[3]);
   LOG(INFO) << "num of node:" << num_of_node;
   LOG(INFO) << "Engine start at " << node_id;
   LOG(INFO) << "Node port" << node_port;
