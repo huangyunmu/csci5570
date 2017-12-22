@@ -50,7 +50,7 @@ TEST_F(TestDataLoader, LoadKddData) {
   auto kdd_parse = Parser::parse_kdd;
   int n_features = 10;
   std::string url = "hdfs:///datasets/classification/kdd12";  // Do not change
-  std::string hdfs_namenode = "proj8";                       // Do not change
+  std::string hdfs_namenode = "proj10";                       // Do not change
   std::string master_host = "proj10";                         // Set to worker name
   std::string worker_host = "proj10";                         // Set to worker name
   int hdfs_namenode_port = 9000;                              // Do not change
