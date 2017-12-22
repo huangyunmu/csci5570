@@ -143,7 +143,7 @@ class Engine {
     std::unique_ptr<SimpleIdMapper> id_mapper = this->id_mapper_;
 
     for (auto node : nodes_) {
-      std::vector<uint32_t> server_thread_ids = GetServerThreadsForId(node);
+      std::vector<uint32_t> server_thread_ids = this->GetServerThreadsForId(node.id);
       for (auto server_thread_id : server_thread_ids) {
         vt.push_back(server_thread_id);
       }
