@@ -140,10 +140,8 @@ class Engine {
   uint32_t CreateTable(ModelType model_type, StorageType storage_type, int model_staleness = 0) {
     std::unique_ptr<AbstractPartitionManager> pm;
     std::vector<uint32_t> vt;
-    std::unique_ptr<SimpleIdMapper> id_mapper = this->id_mapper_;
-
     for (auto node : nodes_) {
-      std::vector<uint32_t> server_thread_ids = this->GetServerThreadsForId(node.id);
+      std::vector<uint32_t> server_thread_ids = this->id_mapper_->GetServerThreadsForId(node.id);
       for (auto server_thread_id : server_thread_ids) {
         vt.push_back(server_thread_id);
       }
