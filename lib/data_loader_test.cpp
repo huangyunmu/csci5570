@@ -57,7 +57,7 @@ TEST_F(TestDataLoader, LoadKddData) {
   int n_features = 10;
   std::string url = "hdfs:///datasets/classification/kdd12";  // Do not change
   std::string hdfs_namenode = "proj10";                       // Do not change
-  std::string master_host = "proj10";                         // Set to worker name
+  std::string master_host = "proj5";                         // Set to worker name
   std::string worker_host = "proj5";                          // Set to worker name
   int hdfs_namenode_port = 9000;                              // Do not change
   int master_port = 45743;                                    // Do not change
