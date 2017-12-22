@@ -28,9 +28,8 @@ TEST_F(TestDataLoader, LoadSVMData) {
   // Parser svm_parser();
   auto svm_parse = Parser::parse_libsvm;
   int n_features = 10;
-  std::string url = "hdfs:///datasets/classification/a9";
   lib::DataLoader<lib::SVMSample, DataStore> data_loader;
-  std::string url = "hdfs:///datasets/classification/kdd12";  // Do not change
+  std::string url = "hdfs:///datasets/classification/a9";  // Do not change
   std::string hdfs_namenode = "proj10";                       // Do not change
   std::string master_host = "proj10";                         // Set to worker name
   std::string worker_host = "proj10";                         // Set to worker name
