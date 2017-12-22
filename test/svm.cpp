@@ -127,7 +127,7 @@ void SVMTest(uint32_t node_id, int num_of_node) {
   task.SetTables({kTable});
   std::vector<WorkerAlloc> worker_alloc;
   for (int i = 0; i < num_of_node; i++) {
-    woker_alloc.push_back({nodes[i].id, static_cast<uint32_t>(workers_per_node)});
+    worker_alloc.push_back({nodes[i].id, static_cast<uint32_t>(workers_per_node)});
     // woker_alloc.push_back({nodes[i].id, 1});
   }
   task.SetWorkerAlloc(worker_alloc);
