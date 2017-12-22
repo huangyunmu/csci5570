@@ -104,6 +104,7 @@ void SVMTest(uint32_t node_id, int num_of_node) {
   int hdfs_namenode_port = 9000;                               // Do not change
   int master_port = 41984;                                     // Do not change
   int node_port = 52324;
+  int batchSize = 2000;
   lib::DataLoader<lib::KddSample, DataStore> data_loader;
   data_loader.load<Parse>(url, hdfs_namenode, master_host, worker_host, hdfs_namenode_port, master_port, n_features,
                           kdd_parse, &data_store);
@@ -137,7 +138,7 @@ void SVMTest(uint32_t node_id, int num_of_node) {
   LOG(INFO) << "Before learning";
   task.SetLambda([kTable, &data_store](const Info& info) {
     BatchIterator<lib::KddSample> batch(data_store);
-    auto keys_data = batch.NextBatch(2000);
+    auto keys_data = batch.NextBatch(batchSize);
     std::vector<lib::KddSample> datasample = keys_data.second;
     auto keys = keys_data.first;
     std::vector<double> vals;
@@ -153,8 +154,8 @@ void SVMTest(uint32_t node_id, int num_of_node) {
   LOG(INFO) << "Learning";
   task.SetLambda([kTable, &data_store](const Info& info) {
     BatchIterator<lib::KddSample> batch(data_store);
-    for (int iter = 0; iter < 5; ++iter) {
-      auto keys_data = batch.NextBatch(2000);
+    for (int iter = 0; iter < 10; ++iter) {
+      auto keys_data = batch.NextBatch(batchSize);
       std::vector<lib::KddSample> datasample = keys_data.second;
       auto keys = keys_data.first;
       std::vector<double> vals;
@@ -170,7 +171,7 @@ void SVMTest(uint32_t node_id, int num_of_node) {
   LOG(INFO) << "After training";
   task.SetLambda([kTable, &data_store](const Info& info) {
     BatchIterator<lib::KddSample> batch(data_store);
-    auto keys_data = batch.NextBatch(2000);
+    auto keys_data = batch.NextBatch(batchSize);
     std::vector<lib::KddSample> datasample = keys_data.second;
     auto keys = keys_data.first;
     std::vector<double> vals;
