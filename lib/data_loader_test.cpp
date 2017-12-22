@@ -49,9 +49,16 @@ TEST_F(TestDataLoader, LoadKddData) {
   // Parser svm_parser();
   auto kdd_parse = Parser::parse_kdd;
   int n_features = 10;
-  std::string url = "hdfs:///datasets/classification/kdd12";
+  std::string url = "hdfs:///datasets/classification/kdd12";  // Do not change
+  std::string hdfs_namenode = "proj10";                       // Do not change
+  std::string master_host = "proj10";                         // Set to worker name
+  std::string worker_host = "proj10";                         // Set to worker name
+  int hdfs_namenode_port = 9000;                              // Do not change
+  int master_port = 45743;                                    // Do not change
   lib::DataLoader<lib::KddSample, DataStore> data_loader;
-  data_loader.load<Parse>(url, n_features, kdd_parse, &data_store);
+  data_loader.load<Parse>(url, hdfs_namenode, master_host, worker_host, hdfs_namenode_port, master_port, n_features,
+                          kdd_parse, &data_store);
+
   data_loader.test();
   for (int i = 0; i < data_store.size(); i++) {
     LOG(INFO) << "Index :" << i << " " << data_store[i].toString();
