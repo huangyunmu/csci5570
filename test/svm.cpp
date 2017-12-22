@@ -168,7 +168,7 @@ void SVMTest(uint32_t node_id, int num_of_node, int node_port) {
   });
   engine.Barrier();
   engine.Run(task);
-  LOG(INFO) << "After training";
+  LOG(INFO) << "After learning";
   task.SetLambda([kTable, &data_store](const Info& info) {
     BatchIterator<lib::KddSample> batch(data_store);
     auto keys_data = batch.NextBatch(2000);
