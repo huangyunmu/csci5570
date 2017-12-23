@@ -109,7 +109,6 @@ void SVMTest(uint32_t node_id, int num_of_node, int node_port, int master_port) 
   //   master_port += 10000;
   // }
   int workers_per_node = 5;
-  LOG(INFO) << "Master port" << master_port;
   lib::DataLoader<lib::KddSample, DataStore> data_loader;
   data_loader.load<Parse>(url, hdfs_namenode, master_host, worker_host, hdfs_namenode_port, master_port, n_features,
                           kdd_parse, &data_store);
