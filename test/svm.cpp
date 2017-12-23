@@ -88,7 +88,7 @@ double correct_rate(const std::vector<lib::KddSample>& samples, const std::vecto
   return result;
 }
 
-void SVMTest(uint32_t node_id, int num_of_node, int node_port) {
+void SVMTest(uint32_t node_id, int num_of_node, int node_port, int master_port) {
   using DataStore = std::vector<lib::KddSample>;
   using Parser = lib::Parser<lib::KddSample, DataStore>;
   using Parse = std::function<lib::KddSample(boost::string_ref, int)>;
@@ -103,11 +103,11 @@ void SVMTest(uint32_t node_id, int num_of_node, int node_port) {
   std::string worker_host = "proj" + std::to_string(node_id);  // Set to worker name
   int hdfs_namenode_port = 9000;                               // Do not change
   // int master_port = 12343; // Do not change
-  srand((unsigned) time(0));
-  int master_port = rand() % 90000;  // Random port
-  if (master_port <= 10000) {
-    master_port += 10000;
-  }
+  // srand((unsigned) time(0));
+  // int master_port = rand() % 90000;  // Random port
+  // if (master_port <= 10000) {
+  //   master_port += 10000;
+  // }
   int workers_per_node = 5;
   LOG(INFO) << "Master port" << master_port;
   lib::DataLoader<lib::KddSample, DataStore> data_loader;
@@ -202,8 +202,9 @@ int main(int argc, char** argv) {
   node_id = atoi(argv[1]);
   int num_of_node = atoi(argv[2]);
   int node_port = atoi(argv[3]);
-  LOG(INFO) << "num of node:" << num_of_node;
+  int master_port = atoi(argv[4]) LOG(INFO) << "num of node:" << num_of_node;
   LOG(INFO) << "Engine start at " << node_id;
   LOG(INFO) << "Node port" << node_port;
-  csci5570::SVMTest(node_id, num_of_node, node_port);
+  LOG(INFO) << "Master port" << master_port;
+  csci5570::SVMTest(node_id, num_of_node, node_port, master_port);
 }
