@@ -185,9 +185,9 @@ void SVMTest(uint32_t node_id, int num_of_node, int node_port, int master_port) 
     auto correctrate = correct_rate(datasample, keys, vals);
     LOG(INFO) << correctrate;
   });
-
   engine.Run(task);
   engine.Barrier();
+  LOG(INFO) << "Node " << node_id << " complete";
   engine.StopEverything();
   //   return 1;
 }
