@@ -139,7 +139,7 @@ void SVMTest(uint32_t node_id, int num_of_node, int node_port, int master_port) 
   // task.SetWorkerAlloc({{9, 5}, {10, 5}});
   // get client table
   // Before learning
-  LOG(INFO) << "Before learning";
+  LOG(INFO) << node_id << " before learning";
   task.SetLambda([kTable, &data_store](const Info& info) {
     BatchIterator<lib::KddSample> batch(data_store);
     auto keys_data = batch.NextBatch(2000);
@@ -155,7 +155,7 @@ void SVMTest(uint32_t node_id, int num_of_node, int node_port, int master_port) 
 
   engine.Run(task);
   engine.Barrier();
-  LOG(INFO) << "Learning";
+  LOG(INFO) << node_id << " is learning";
   task.SetLambda([kTable, &data_store](const Info& info) {
     BatchIterator<lib::KddSample> batch(data_store);
     for (int iter = 0; iter < 10; ++iter) {
@@ -172,7 +172,7 @@ void SVMTest(uint32_t node_id, int num_of_node, int node_port, int master_port) 
   });
   engine.Barrier();
   engine.Run(task);
-  LOG(INFO) << "After learning";
+  LOG(INFO) << node_id << " After learning";
   task.SetLambda([kTable, &data_store](const Info& info) {
     BatchIterator<lib::KddSample> batch(data_store);
     auto keys_data = batch.NextBatch(2000);
