@@ -1,7 +1,7 @@
 import os
 num_of_nodes = 2
 cmd = ""
-port = 12700
+port = 12701
 master_port = 32342
 for i in range(0, num_of_nodes):
     cmd = cmd + "ssh 1155086998@proj" + str(10 - i) + " & "
