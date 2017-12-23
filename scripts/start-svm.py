@@ -1,5 +1,5 @@
 import os
-num_of_nodes = 1
+num_of_nodes = 2
 cmd = ""
 port = 12425
 for i in range(0, num_of_nodes):
