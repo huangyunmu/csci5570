@@ -1,9 +1,9 @@
+#include <time.h>
 #include <vector>
+#include "driver/engine.hpp"
 #include "gflags/gflags.h"
 #include "glog/logging.h"
 #include "gtest/gtest.h"
-
-#include "driver/engine.hpp"
 #include "lib/batchiterator.hpp"
 #include "lib/data_loader.hpp"
 #include "lib/svm_sample.hpp"
@@ -102,7 +102,8 @@ void SVMTest(uint32_t node_id, int num_of_node, int node_port) {
   std::string master_host = "proj" + std::to_string(node_id);  // Set to worker name
   std::string worker_host = "proj" + std::to_string(node_id);  // Set to worker name
   int hdfs_namenode_port = 9000;                               // Do not change
-  // int master_port = 12343;                                     // Do not change
+  // int master_port = 12343; // Do not change
+  srand((unsigned) time(0));
   int master_port = rand() % 90000;  // Random port
   if (master_port <= 10000) {
     master_port += 10000;
