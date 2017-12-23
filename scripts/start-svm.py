@@ -12,5 +12,5 @@ for i in range(0, num_of_nodes):
     os.system(cmd)
     cmd = ""
 while(True):
-
+    pass
 # print cmd
