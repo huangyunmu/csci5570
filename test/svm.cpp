@@ -102,12 +102,13 @@ void SVMTest(uint32_t node_id, int num_of_node, int node_port) {
   std::string master_host = "proj" + std::to_string(node_id);  // Set to worker name
   std::string worker_host = "proj" + std::to_string(node_id);  // Set to worker name
   int hdfs_namenode_port = 9000;                               // Do not change
-  int master_port = rand() % 90000;                            // Random port
-  if (master_port < 10000) {
+  // int master_port = 12343;                                     // Do not change
+  int master_port = rand() % 90000;  // Random port
+  if (master_port <= 10000) {
     master_port += 10000;
   }
-  // int node_port = 94286;
   int workers_per_node = 5;
+  LOG(INFO) << "Master port" << master_port;
   lib::DataLoader<lib::KddSample, DataStore> data_loader;
   data_loader.load<Parse>(url, hdfs_namenode, master_host, worker_host, hdfs_namenode_port, master_port, n_features,
                           kdd_parse, &data_store);
